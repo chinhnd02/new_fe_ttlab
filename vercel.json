@@ -3,7 +3,7 @@
     { "source": "/(.*)", "destination": "/index.html" },
     {
       "source": "/api/(.*)",
-      "has": [{ "type": "method", "value": "POST" }],
+      "method": "POST",
       "destination": "https://ttlab-be-tan.vercel.app/api/v1"
     }
   ]
