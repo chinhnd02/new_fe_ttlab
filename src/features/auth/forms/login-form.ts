@@ -33,6 +33,9 @@ export const useLoginForm = () => {
   } = useField<string>('password');
 
   const handleLogin = handleSubmit(async (values) => {
+
+    // console.log(values.email);
+
     const res = await authStore.login({
       email: values.email,
       password: values.password,
