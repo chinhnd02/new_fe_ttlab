@@ -2,8 +2,8 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://ttlab-be-tan.vercel.app/api/v1",
-      "method": "POST"
+      "destination": "https://your-api-server.com/api/$1",
+      "headers": { "x-vercel-http-method": "POST" }
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
