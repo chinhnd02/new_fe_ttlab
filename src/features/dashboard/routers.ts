@@ -7,10 +7,6 @@ import { computed, ref } from 'vue';
 
 let defaultPage = ref(MainLayout)
 
-const routerComponent = computed(() => {
-  return { template: `<router-view />`, components: { routerView: defaultPage.value } };
-});
-
 export function setDashboardContent(component: any) {
   defaultPage.value = component;
   console.log(defaultPage.value);

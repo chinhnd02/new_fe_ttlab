@@ -144,9 +144,6 @@ const formatMoney = (money) => {
                     </th>
                     <th class="text-table text-uppercase">Giá</th>
                     <th class="text-table text-uppercase">Số lượng</th>
-                    <th class="text-table text-uppercase">Mô tả</th>
-                    <th class="text-table text-uppercase">Ảnh</th>
-                    <th class="text-table text-uppercase">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
