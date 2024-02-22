@@ -1,6 +1,6 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" },
-    { "source": "/api/v1/auth/login", "destination": "/index.html" }
+    { "source": "/api/(.*)", "destination": "https://ttlab-be-tan.vercel.app/api/v1" }
   ]
 }
