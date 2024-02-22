@@ -8,6 +8,7 @@ import { routers } from './routers';
 import VueRouteMiddleware, { GLOBAL_MIDDLEWARE_NAME } from './middleware';
 import AuthMiddleware from './authMiddleware';
 import { PageName } from '@/common/constants';
+import HomewView from '../../features/home/page/HomeView.vue'
 const NotFoundPage = () => import('@/features/errors/pages/NotFoundPage.vue');
 
 const routes: Array<RouteRecordRaw> = [
@@ -23,6 +24,15 @@ const routes: Array<RouteRecordRaw> = [
       public: true,
     },
   },
+  // {
+  //   path: '/home',
+  //   // name: PageName.NOT_FOUND_PAGE,
+  //   name: 'home',
+  //   component: HomewView,
+  //   meta: {
+  //     public: true,
+  //   },
+  // },
   ...routers,
   {
     path: '/:catchAll(.*)*',
@@ -37,19 +47,19 @@ const router = createRouter({
     if (to.hash) {
       return from.name
         ? {
-            el: to.hash,
-            top: 180,
-            behavior: 'smooth',
-          }
+          el: to.hash,
+          top: 180,
+          behavior: 'smooth',
+        }
         : new Promise((resolve) => {
-            setTimeout(() => {
-              resolve({
-                el: to.hash,
-                top: 180,
-                behavior: 'smooth',
-              });
-            }, 3000);
-          });
+          setTimeout(() => {
+            resolve({
+              el: to.hash,
+              top: 180,
+              behavior: 'smooth',
+            });
+          }, 3000);
+        });
     }
     return {
       top: 0,
