@@ -1,10 +1,11 @@
 {
-  "rewrites": [
+  "routes": [
     { "source": "/(.*)", "destination": "/index.html" },
+    { "handle": "filesystem" },
     {
-      "source": "/api/(.*)",
-      "destination": "https://ttlab-be-tan.vercel.app/api/v1",
-      "methods": ["GET", "POST"]
+      "src": "/api/(.*)",
+      "methods": ["GET", "POST"],
+      "destination": "https://ttlab-be-tan.vercel.app/api/v1"
     }
   ]
 }
