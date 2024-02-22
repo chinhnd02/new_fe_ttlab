@@ -5,14 +5,5 @@
       "source": "/api/(.*)",
       "destination": "https://ttlab-be-tan.vercel.app/api/v1"
     }
-  ],
-
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/api/(.*)",
-      "methods": ["GET", "POST"],
-      "dest": "https://ttlab-be-tan.vercel.app/api/v1"
-    }
   ]
 }
