@@ -1,14 +1,10 @@
 {
-  "routes": [
+  "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" },
     {
-      "src": "/api/.*",
-      "methods": ["GET", "POST"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1",
-      "methods": ["GET"]
+      "source": "/api/(.*)",
+      "has": [{ "type": "method", "value": "POST" }],
+      "destination": "https://ttlab-be-tan.vercel.app/api/v1"
     }
   ]
 }
