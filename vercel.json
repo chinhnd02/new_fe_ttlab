@@ -3,7 +3,7 @@
     {
       "source": "/api/(.*)",
       "destination": "https://your-api-server.com/api/$1",
-      "headers": { "x-vercel-http-method": "POST" }
+      "methods": ["POST"]
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
