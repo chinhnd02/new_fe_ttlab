@@ -17,6 +17,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" },
     {
       "source": "/api/(.*)",
       "destination": "https://ttlab-be-tan.vercel.app/api/v1"
