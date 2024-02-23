@@ -140,7 +140,7 @@ const formatMoney = (money) => {
                       class="text-table text-uppercase"
                       style="padding: 16px 0 16px 36px"
                     >
-                      Tên sản phẩm
+                      Trang 2
                     </th>
                     <th class="text-table text-uppercase">Giá</th>
                     <th class="text-table text-uppercase">Số lượng</th>

@@ -15,13 +15,13 @@ const visible = ref(false);
 <template>
   <LoadingOverlay :loading="loading" bg-color="#FFF" :opacity="1" />
   <div class="h-100 d-flex align-center justify-center">
-    <v-card width="448" flat rounded="lg" class="pb-5 pa-5">
+    <v-card width="426" flat rounded="lg" class="pb-5">
       <v-card-title>
         <v-img :src="logon" :lazy-src="logon" :height="60"></v-img>
         <p class="mt-4 text-center text-title">Đăng nhập</p>
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text style="padding: 0 1px">
         <div
           class="text-email text-medium-emphasis mb-1 font-weight-bold d-flex align-center justify-space-between"
         >
@@ -66,7 +66,7 @@ const visible = ref(false);
         <div class="text-center">
           <v-btn
             color="#0f60ff"
-            :width="448"
+            :width="426"
             class="text-login text-capitalize"
             :text="$t('auth.button.login')"
             @click="loginForm.handleLogin"
@@ -74,7 +74,10 @@ const visible = ref(false);
           />
         </div>
 
-        <v-card-text class="text-center ml-10" style="display: flex">
+        <v-card-text
+          class="d-flex justify-center align-center"
+          style="display: flex; margin: auto"
+        >
           <!-- <v-row> -->
           <p class="cctk">Bạn chưa có tài khoản?</p>
           <p class="ml-2 register">Đăng ký</p>
