@@ -83,6 +83,7 @@ const toggleCollapse = () => {
       title="User"
       @click="(rail = true), setDashboardContent(SecondaryLayout)"
     ></v-list-item>
+
     <!-- <v-icon
       class="sidebar-collapse"
       :icon="rail ? 'mdi-chevron-right' : 'mdi-chevron-left'"

@@ -223,17 +223,21 @@ const formatMoney = (money) => {
               <v-col cols="7">
                 <v-row>
                   <p class="mt-5 ml-6 showing" style="padding-left: 24px">Showing</p>
-                  <v-col cols="2">
-                    <v-select
-                      v-model="selectedValue"
-                      :items="['10', '20', '30', 'All']"
-                      density="compact"
-                      single-line
-                      label="10"
-                      variant="outlined"
-                    ></v-select>
+                  <v-col>
+                    <v-row>
+                      <v-select
+                        class="mt-3 ml-3 mr-3"
+                        v-model="selectedValue"
+                        :items="['10', '20', '30', 'All']"
+                        density="compact"
+                        single-line
+                        style="max-width: 85px"
+                        label="10"
+                        variant="outlined"
+                      ></v-select>
+                      <p class="mt-5 showing">of 50</p>
+                    </v-row>
                   </v-col>
-                  <p class="mt-5 showing">of 50</p>
                 </v-row>
               </v-col>
               <v-col cols="1"></v-col>
