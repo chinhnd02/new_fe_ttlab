@@ -92,6 +92,7 @@ const deleteProduct = async () => {
 const formatMoney = (money) => {
   return numeral(money).format('0,0') + ' ₫';
 };
+//
 </script>
 
 <template>
@@ -112,7 +113,6 @@ const formatMoney = (money) => {
                 single-line
                 hide-details
               ></v-text-field>
-              <!-- {{ search }} -->
             </v-col>
             <v-col class="text-right mr-4 mt-5">
               <v-btn
@@ -164,9 +164,7 @@ const formatMoney = (money) => {
                     >
                       {{ item.name }}
                     </td>
-                    <!-- {{
-                      item.id
-                    }} -->
+
                     <td class="text-left">{{ formatMoney(item.price) }}</td>
                     <td class="text-left">{{ item.quantity }}</td>
                     <td
@@ -183,7 +181,6 @@ const formatMoney = (money) => {
                     </td>
                     <td class="text-left">
                       <v-img style="height: 70px; width: 70px" :src="item.image"></v-img>
-                      <!-- <img src="../assets/image/img.png" alt="" /> -->
                     </td>
                     <td class="text-left">
                       <v-btn
@@ -196,7 +193,6 @@ const formatMoney = (money) => {
                             (idProduct = item.id)
                         "
                       >
-                        <!-- <img class="mt-1 mr-2" src="../assets/image/edit.png" alt="" /> -->
                         <v-icon icon="mdi mdi-square-edit-outline"></v-icon>
                       </v-btn>
                       <v-btn
@@ -207,7 +203,6 @@ const formatMoney = (money) => {
                       >
                         <v-icon icon="mdi mdi-trash-can-outline"> </v-icon>
                       </v-btn>
-                      <!-- <img src="../assets/image/trash.png" alt="" /> -->
                     </td>
                     <hr />
                   </tr>
@@ -327,3 +322,6 @@ const formatMoney = (money) => {
   text-overflow: ellipsis;
 }
 </style>
+
+
+

@@ -130,89 +130,8 @@ const formatMoney = (money) => {
             </v-col>
           </v-row>
 
-          <v-row class="mr-2">
-            <v-col cols="12">
-              <v-table style="border-radius: 12px 12px 0 0">
-                <thead>
-                  <tr>
-                    <th
-                      colspan="2"
-                      class="text-table text-uppercase"
-                      style="padding: 16px 0 16px 36px"
-                    >
-                      Trang 2
-                    </th>
-                    <th class="text-table text-uppercase">Giá</th>
-                    <th class="text-table text-uppercase">Số lượng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(item, i) in searchProduct" :key="i">
-                    <td
-                      colspan="2"
-                      class="text-left font-weight-bold"
-                      style="
-                        padding: 18px 0 18px 36px;
-                        white-space: nowrap;
-                        max-width: 100px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                      "
-                    >
-                      {{ item.name }}
-                    </td>
-                    <!-- {{
-                      item.id
-                    }} -->
-                    <td class="text-left">{{ formatMoney(item.price) }}</td>
-                    <td class="text-left">{{ item.quantity }}</td>
-                    <td
-                      id="description"
-                      class="text-left"
-                      style="
-                        white-space: nowrap;
-                        max-width: 100px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                      "
-                    >
-                      {{ item.description }}
-                    </td>
-                    <td class="text-left">
-                      <v-img style="height: 70px; width: 70px" :src="item.image"></v-img>
-                      <!-- <img src="../assets/image/img.png" alt="" /> -->
-                    </td>
-                    <td class="text-left">
-                      <v-btn
-                        icon
-                        size="small"
-                        flat
-                        @click="
-                          (dialogEdit = true),
-                            (currentProduct = item),
-                            (idProduct = item.id)
-                        "
-                      >
-                        <!-- <img class="mt-1 mr-2" src="../assets/image/edit.png" alt="" /> -->
-                        <v-icon icon="mdi mdi-square-edit-outline"></v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        size="small"
-                        flat
-                        @click="(dialogDelete = true), (id = item.id)"
-                      >
-                        <v-icon icon="mdi mdi-trash-can-outline"> </v-icon>
-                      </v-btn>
-                      <!-- <img src="../assets/image/trash.png" alt="" /> -->
-                    </td>
-                    <hr />
-                  </tr>
-                </tbody>
-              </v-table>
-            </v-col>
-          </v-row>
-          <div
+          <h1>haha</h1>
+          <!-- <div
             style="background-color: white; border-radius: 0 0 12px 12px"
             class="mr-5 mb-10"
           >
@@ -247,41 +166,10 @@ const formatMoney = (money) => {
                 </div>
               </v-col>
             </v-row>
-          </div>
+          </div> -->
         </div>
       </router-view>
     </v-main>
-    <add-new
-      :dialogAdd="dialogAdd"
-      @close="dialogAdd = false"
-      @updateData="getAllProduct()"
-    />
-    <edit-product
-      :dialogEdit="dialogEdit"
-      :idProduct="idProduct"
-      :currentProduct="currentProduct"
-      @close="closeDialogEdit"
-      @updateData="getAllProduct()"
-    />
-
-    <v-dialog max-width="450px" v-model="dialogDelete">
-      <v-card>
-        <v-alert type="warning">
-          <v-row align="center">
-            <v-col cols="11" class="text-center"> Bạn có muốn xóa không? </v-col>
-          </v-row>
-          <v-row align="center">
-            <v-spacer></v-spacer>
-            <v-col cols="5" variant="text">
-              <v-btn @click="deleteProduct">Đồng ý</v-btn>
-            </v-col>
-            <v-col cols="6" variant="text">
-              <v-btn @click="dialogDelete = false">Hủy bỏ</v-btn>
-            </v-col>
-          </v-row>
-        </v-alert>
-      </v-card>
-    </v-dialog>
   </v-app>
 </template>
 
