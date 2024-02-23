@@ -19,7 +19,7 @@ export function setDashboardContent(component: any) {
 const dashboardRouters: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
-    component: defaultPage.value,
+    component: () => defaultPage.value,
     children: [
       {
         path: '',
