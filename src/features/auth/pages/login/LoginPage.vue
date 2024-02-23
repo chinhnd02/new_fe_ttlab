@@ -36,10 +36,14 @@ const visible = ref(false);
           :placeholder="$t('auth.form.placeholder.email')"
           :error="!!loginForm.emailError"
           single-line
+          hide-details
         ></v-text-field>
+        <p class="mt-1" style="color: red; float: right" v-if="loginForm.emailError">
+          {{ loginForm.emailError }}
+        </p>
 
         <div
-          class="text-email text-medium-emphasis mb-1 font-weight-bold d-flex align-center justify-space-between"
+          class="text-email text-medium-emphasis mb-1 mt-5 font-weight-bold d-flex align-center justify-space-between"
         >
           Mật khẩu
         </div>
@@ -55,9 +59,13 @@ const visible = ref(false);
           variant="outlined"
           @click:append-inner="visible = !visible"
           single-line
+          hide-details
         ></v-text-field>
+        <p class="mt-1" style="color: red; float: right" v-if="loginForm.passwordError">
+          {{ loginForm.passwordError }}
+        </p>
 
-        <v-row class="">
+        <v-row class="mt-4">
           <v-checkbox label="Ghi nhớ Đăng nhập" class="font-weight-bold"></v-checkbox>
 
           <p class="forgot-pass mt-5 mr-4">Quên mật khẩu?</p>

@@ -6,11 +6,15 @@ import { LoginProvider } from '../auth.constants';
 import { loginWithPasswordSchema } from '../schema';
 import { useAuthStore } from '../stores';
 import router from '@/plugins/vue-router';
+import isEmail from 'validator/lib/isEmail';
+import { isLength } from 'lodash';
+import isStrongPassword from 'validator/lib/isStrongPassword';
 // 
 
 export const useLoginForm = () => {
 
   const authStore = useAuthStore();
+  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
   const { t } = useI18n();
   const {
     handleSubmit,
@@ -25,12 +29,23 @@ export const useLoginForm = () => {
     value: email,
     setValue: setEmail,
     errorMessage: emailError,
-  } = useField<string>('email');
+  } = useField<string>('email', (value: string) => {
+    const isValid = isEmail(value);
+    return isValid ? true : 'Email không hợp lệ'
+  });
   const {
     value: password,
     setValue: setPassword,
     errorMessage: passwordError,
-  } = useField<string>('password');
+  } = useField<string>('password', (value: string) => {
+    if (!passwordRegex.test(value)) {
+      return 'Mật khẩu phải chứa ít nhất một ký tự chữ và một số';
+    }
+    // else if (!isValidLength) {
+    //   return 'Mật khẩu chứa ít nhất 8 kí tự';
+    // }
+    return true;
+  });
 
   const handleLogin = handleSubmit(async (values) => {
 
@@ -51,7 +66,7 @@ export const useLoginForm = () => {
 
     }
     else {
-      showErrorNotification(t('auth.error.login'))
+      showErrorNotification(t('auth.error.login'));
     }
     return false;
   });

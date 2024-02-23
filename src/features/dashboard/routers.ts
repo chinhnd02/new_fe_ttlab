@@ -24,6 +24,7 @@ const dashboardRouters: Array<RouteRecordRaw> = [
       {
         path: '',
         name: PageName.DASHBOARD_PAGE,
+        // component: SecondaryLayout,
         component: DashboardPage,
         meta: {
           public: true,
