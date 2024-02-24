@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
 import SideBar from './components/sidebar/SideBar.vue';
-import AddNew from '../components/product/AddNew.vue';
-import EditProduct from '../components/product/EditProduct.vue';
-import { serviceProduct } from '../layouts/components/product/product';
+import AddNew from '../../../components/product/AddNew.vue';
+import EditProduct from '../../../components/product/EditProduct.vue';
+import { serviceProduct } from '../../../layouts/components/product/product';
 // import { Product } from '../layouts/components/product/interface';
 import numeral from 'numeral';
 import { DEFAULT_LIMIT_FOR_PAGINATION } from '@/common/constants';
-import { useProduct } from '../layouts/components/product/product.store';
+import { useProduct } from '../../../layouts/components/product/product.store';
 
 const { fetchProducts, query } = useProduct();
 

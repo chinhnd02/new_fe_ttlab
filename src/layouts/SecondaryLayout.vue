@@ -95,43 +95,43 @@ const formatMoney = (money) => {
 </script>
 
 <template>
-  <v-app :full-height="true">
-    <SideBar />
-    <v-main>
-      <router-view v-slot="{ Component }">
-        <component :is="Component" />
-        <div class="ml-5 mr-4">
-          <v-row>
-            <v-col cols="4" class="mt-4">
-              <v-text-field
-                density="compact"
-                variant="solo"
-                v-model="search"
-                label="Tìm kiếm"
-                append-inner-icon="mdi-magnify"
-                single-line
-                hide-details
-              ></v-text-field>
-              <!-- {{ search }} -->
-            </v-col>
-            <v-col class="text-right mr-4 mt-5">
-              <v-btn
-                class="text-capitalize text-button"
-                color="#0F60FF"
-                @click="dialogAdd = true"
-              >
-                <img
-                  style="width: 16px; height: 16px"
-                  src="../assets/image/icon.png"
-                  alt=""
-                />Tạo
-                <p class="text-lowercase">mới</p>
-              </v-btn>
-            </v-col>
-          </v-row>
+  <!-- <v-app :full-height="true"> -->
+  <!-- <SideBar /> -->
+  <!-- <v-main> -->
+  <!-- <router-view v-slot="{ Component }"> -->
+  <component :is="Component" />
+  <div class="ml-5 mr-4">
+    <v-row>
+      <v-col cols="4" class="mt-4">
+        <v-text-field
+          density="compact"
+          variant="solo"
+          v-model="search"
+          label="Tìm kiếm"
+          append-inner-icon="mdi-magnify"
+          single-line
+          hide-details
+        ></v-text-field>
+        <!-- {{ search }} -->
+      </v-col>
+      <v-col class="text-right mr-4 mt-5">
+        <v-btn
+          class="text-capitalize text-button"
+          color="#0F60FF"
+          @click="dialogAdd = true"
+        >
+          <img
+            style="width: 16px; height: 16px"
+            src="../assets/image/icon.png"
+            alt=""
+          />Tạo
+          <p class="text-lowercase">mới</p>
+        </v-btn>
+      </v-col>
+    </v-row>
 
-          <h1>haha</h1>
-          <!-- <div
+    <h1>haha</h1>
+    <!-- <div
             style="background-color: white; border-radius: 0 0 12px 12px"
             class="mr-5 mb-10"
           >
@@ -167,10 +167,10 @@ const formatMoney = (money) => {
               </v-col>
             </v-row>
           </div> -->
-        </div>
-      </router-view>
-    </v-main>
-  </v-app>
+  </div>
+  <!-- </router-view> -->
+  <!-- </v-main> -->
+  <!-- </v-app> -->
 </template>
 
 <style lang="scss" scoped>

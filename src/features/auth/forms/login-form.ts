@@ -61,7 +61,7 @@ export const useLoginForm = () => {
     if (res.success) {
       showSuccessNotification(t('auth.success.login'));
 
-      router.push('/dashboard');
+      router.push('/admin');
       return true;
 
     }

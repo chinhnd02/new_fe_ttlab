@@ -5,7 +5,7 @@ import DashboardPage from './pages/DashboardPage.vue';
 import SecondaryLayout from '@/layouts/SecondaryLayout.vue'
 import { computed, onMounted, reactive, ref, watch, watchEffect } from 'vue';
 
-let defaultPage = ref(MainLayout)
+let defaultPage = ref(SecondaryLayout)
 
 
 export function setDashboardContent(component: any) {
