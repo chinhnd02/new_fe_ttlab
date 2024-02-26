@@ -53,7 +53,10 @@ const formatTime = (time) => {
   const day = new Date(time).getDate();
   const month = new Date(time).getMonth() + 1;
   const year = new Date(time).getFullYear();
-  return `${day}/${month}/${year}`;
+  // return `${year}/${month}/${day}`;
+  const formatMonth = month >= 10 ? month : '0' + month;
+  const formatDay = day >= 10 ? day : '0' + day;
+  return year + '/' + formatMonth + '/' + formatDay;
 };
 
 const searchUser = computed(() => {
