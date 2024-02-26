@@ -44,7 +44,7 @@
     <v-app-bar flat style="background-color: #f5f5f9">
       <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
 
-      <v-app-bar-title>{{
+      <v-app-bar-title class="title-admin ml-5">{{
         showProductList == true ? 'Danh sách sản phẩm' : 'Danh sách người dùng'
       }}</v-app-bar-title>
     </v-app-bar>
@@ -108,6 +108,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
 .sidebar {
   position: relative;
   text-align: left;
@@ -157,5 +158,12 @@ export default {
   font-size: 11px;
   line-height: 14px;
   color: #8b909a;
+}
+.title-admin {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 22px;
+  padding: 20px 0;
 }
 </style>

@@ -109,6 +109,7 @@ const formatMoney = (money) => {
           variant="solo"
           v-model="search"
           label="Tìm kiếm"
+          style="max-width: 316px"
           append-inner-icon="mdi-magnify"
           single-line
           hide-details

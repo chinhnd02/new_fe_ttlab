@@ -117,6 +117,7 @@
           variant="solo"
           label="Nhập số điện thoại"
           single-line
+          type="number"
           v-model="phoneField.value"
           class="bg-white mb-3"
           hide-details

@@ -132,7 +132,8 @@
           label="Nhập link ảnh sản phẩm"
           single-line
           class="bg-white mb-3"
-          v-model="product.image"
+          type="file"
+          @change="handleImageChange"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -198,6 +199,13 @@ const product = ref<Product>({
   description: '',
   image: null,
 });
+
+const handleImageChange = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    product.value.image = target.files[0];
+  }
+};
 
 const emits = defineEmits(['close', 'updateData']);
 

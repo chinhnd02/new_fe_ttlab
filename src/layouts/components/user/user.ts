@@ -15,22 +15,8 @@ class UserService extends ApiService {
         })
     }
 
-    // async editUser(id: string, user: User): Promise<IBodyResponse<User>> {
-    //     return this.client.patch(`${this.baseUrl}/${id}`, user, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data'
-    //         }
-    //     })
-    // }
-
-    async editUser(id: string, product: User): Promise<IBodyResponse<User>> {
-        console.log(product);
-
-        return this.client.patch(`${this.baseUrl}/${id}`, product, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+    async editUser(id: string, user: User): Promise<IBodyResponse<User>> {
+        return this.client.patch(`${this.baseUrl}/${id}`, user);
     }
 
     async deleteUSer(id: number): Promise<IBodyResponse<User>> {

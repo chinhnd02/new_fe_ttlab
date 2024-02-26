@@ -30,7 +30,7 @@
           label="Nhập tên user"
           single-line
           class="bg-white"
-          v-model="userUpdate.name"
+          v-model="user.name"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -49,7 +49,7 @@
           label="Nhập password"
           single-line
           class="bg-white"
-          v-model="userUpdate.password"
+          v-model="user.password"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -68,7 +68,7 @@
           label="Nhập email"
           single-line
           class="bg-white"
-          v-model="userUpdate.email"
+          v-model="user.email"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -107,7 +107,7 @@
           label="Nhập số điện thoại"
           single-line
           class="bg-white"
-          v-model="userUpdate.phone"
+          v-model="user.phone"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -126,7 +126,7 @@
           label="Avatar"
           single-line
           class="bg-white"
-          v-model="userUpdate.avatar"
+          v-model="user.avatar"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -184,34 +184,26 @@ const formattedBirthday = ref<string>('');
 
 const emits = defineEmits(['close', 'updateData']);
 
-const userUpdate = ref<User>({
+const user = ref<User>({
   name: '',
   password: '',
   email: '',
   birthday: new Date(),
-  phone: '',
+  phone: 0,
   avatar: null,
 });
 
 const updateUser = async () => {
   try {
     const formData = new FormData();
-    formData.append('name', userUpdate.value.name);
-    formData.append('password', userUpdate.value.password);
-    formData.append('email', userUpdate.value.email);
-    formData.append('birthday', formattedBirthday.value);
-    formData.append('phone', userUpdate.value.phone);
-    formData.append('avatar', userUpdate.value.avatar);
+    formData.append('name', user.value.name);
+    formData.append('password', user.value.password);
+    formData.append('email', user.value.email);
+    formData.append('birthday', user.value.birthday);
+    formData.append('phone', user.value.phone);
+    formData.append('avatar', user.value.avatar);
 
     const newItem = await serviceUser.editUser(props.idUser, formData);
-    // const newItem = await serviceUser.editUser(props.idUser, {
-    //   name: userUpdate.value.name,
-    //   password: userUpdate.value.password,
-    //   email: userUpdate.value.email,
-    //   birthday: userUpdate.value.birthday,
-    //   phone: userUpdate.value.phone,
-    //   avatar: userUpdate.value.avatar,
-    // });
     console.log(formData);
 
     if (newItem.success) {
@@ -225,14 +217,15 @@ const updateUser = async () => {
 
 const birthdayString = moment(props.currentUser.birthday).format('YYYY-MM-DD');
 
+formattedBirthday.value = birthdayString;
+
 watchEffect(() => {
-  userUpdate.value.name = props.currentUser.name;
-  userUpdate.value.email = props.currentUser.email;
-  userUpdate.value.password = props.currentUser.password;
-  // userUpdate.value.birthday = birthdayString;
-  formattedBirthday.value = birthdayString;
-  userUpdate.value.phone = props.currentUser.phone;
-  userUpdate.value.avatar = props.currentUser.avatar;
+  user.value.name = props.currentUser.name;
+  user.value.password = props.currentUser.password;
+  user.value.email = props.currentUser.email;
+  user.value.birthday = formattedBirthday.value;
+  user.value.phone = props.currentUser.phone;
+  user.value.avatar = props.currentUser.avatar;
 });
 </script>
 
