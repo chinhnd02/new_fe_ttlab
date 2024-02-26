@@ -32,12 +32,10 @@
         prepend-icon="mdi mdi-package-variant-closed"
         title="Sản phẩm"
         @click="showProduct"
-        @click.prevent="toggleCollapse"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi mdi-account-group"
         @click="showUser"
-        @click.prevent="toggleCollapse"
         link
         title="User"
       ></v-list-item>
@@ -75,10 +73,12 @@ const showUserList = ref(false);
 const showProduct = () => {
   showProductList.value = true;
   showUserList.value = false;
+  rail.value = true;
   console.log(showProductList.value, showUserList.value);
 };
 
 const showUser = () => {
+  rail.value = true;
   showProductList.value = false;
   showUserList.value = true;
   console.log(showProductList.value, showUserList.value);

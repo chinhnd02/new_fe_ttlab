@@ -4,7 +4,7 @@
       class="mx-auto pb-6 mt-1"
       style="border-radius: 12px"
       max-width="448px"
-      v-model="dialog"
+      v-model="props.dialogAdd"
     >
       <div
         style="
@@ -31,48 +31,62 @@
           <p class="ml-1" style="color: #0f60ff">*</p>
         </div>
         <v-text-field
-          :loading="loading"
           density="compact"
           variant="solo"
           label="Nhập tên người dùng"
           single-line
+          type="text"
           class="bg-white"
+          v-model="nameField.value"
           hide-details
-          style="
-            margin-bottom: 16px;
-            border-radius: 6px;
-            border: 1px solid rgb(231, 231, 231);
-          "
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
-          @click:append-inner="onClick"
         ></v-text-field>
+        <span class="error-message">{{ nameField.errorMessage }}</span>
 
         <div
-          class="text-medium-emphasis d-flex align-center font-weight-bold text-name mb-2"
+          class="text-medium-emphasis d-flex align-center font-weight-bold text-name mb-2 mt-4"
         >
           Email
           <p class="ml-1" style="color: #0f60ff">*</p>
         </div>
 
         <v-text-field
-          :loading="loading"
           density="compact"
           variant="solo"
           label="Nhập email"
           single-line
           class="bg-white"
+          v-model="emailField.value"
           hide-details
           flat
-          style="
-            margin-bottom: 16px;
-            border-radius: 6px;
-            border: 1px solid rgb(231, 231, 231);
-          "
-          @click:append-inner="onClick"
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
         ></v-text-field>
+        <span class="error-message">{{ emailField.errorMessage }}</span>
 
         <div
-          class="text-medium-emphasis text-[14px] d-flex align-center font-weight-bold text-name mb-2"
+          class="text-medium-emphasis d-flex align-center font-weight-bold text-name mb-2 mt-4"
+        >
+          Password
+          <p class="ml-1" style="color: #0f60ff">*</p>
+        </div>
+
+        <v-text-field
+          density="compact"
+          variant="solo"
+          label="Nhập password"
+          single-line
+          type="password"
+          class="bg-white"
+          v-model="passwordField.value"
+          hide-details
+          flat
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
+        ></v-text-field>
+        <span class="error-message">{{ passwordField.errorMessage }}</span>
+
+        <div
+          class="text-medium-emphasis d-flex align-center font-weight-bold text-name mb-2 mt-4"
         >
           Ngày sinh
           <p class="ml-1" style="color: #0f60ff">*</p>
@@ -80,40 +94,36 @@
 
         <v-text-field
           type="date"
-          :loading="loading"
           density="compact"
           variant="solo"
           single-line
           class="bg-white"
+          v-model="birthdayField.value"
           flat
           hide-details
-          style="
-            margin-bottom: 16px;
-            border-radius: 6px;
-            border: 1px solid rgb(231, 231, 231);
-          "
-          @click:append-inner="onClick"
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
         ></v-text-field>
+        <span class="error-message">{{ birthdayField.errorMessage }}</span>
 
         <div
-          class="text-medium-emphasis text-[14px] d-flex align-center font-weight-bold text-name mb-2"
+          class="text-medium-emphasis mt-4 d-flex align-center font-weight-bold text-name mb-2"
         >
           Số điện thoại
           <p class="ml-1" style="color: #0f60ff">*</p>
         </div>
 
         <v-text-field
-          :loading="loading"
           density="compact"
           variant="solo"
           label="Nhập số điện thoại"
           single-line
+          v-model="phoneField.value"
           class="bg-white mb-3"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
-          @click:append-inner="onClick"
         ></v-text-field>
+        <span class="error-message">{{ phoneField.errorMessage }}</span>
         <!-- <v-textarea label="Label" variant="solo" flat single-line></v-textarea> -->
 
         <div
@@ -124,16 +134,17 @@
         </div>
 
         <v-text-field
-          :loading="loading"
           density="compact"
           variant="solo"
           label="Nhập link ảnh avartar"
           single-line
           class="bg-white mb-3"
+          @change="handleImageChange"
+          type="file"
+          accept="image/*"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
-          @click:append-inner="onClick"
         ></v-text-field>
 
         <!-- <v-card class="mb-12" color="surface-variant" variant="tonal"> </v-card> -->
@@ -153,7 +164,7 @@
             width="70"
             flat
             class="text-capitalize mr-4"
-            @click="this.$emit('close')"
+            @click="emits('close')"
             style="border-radius: 6px; border: 1px solid rgb(222, 222, 222)"
             >Hủy</v-btn
           >
@@ -161,6 +172,7 @@
             width="105"
             color="#0f60ff"
             class="text-capitalize"
+            @click="addUser"
             flat
             style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
             >Tạo
@@ -172,36 +184,114 @@
   </div>
 </template>
   
-  <script>
-export default {
-  props: ["dialogAdd"],
-  computed: {
-    dialog: {
-      get() {
-        return this.dialogAdd;
-      },
-      set(value) {
-        if (!value) {
-          this.$emit("close");
-        }
-      },
-    },
-  },
-  data() {
-    return {};
-  },
+
+<script setup lang="ts">
+import { FORM_VALIDATION } from '@/common/constants';
+import { FieldContext, useField, useForm } from 'vee-validate';
+import { Ref, ref } from 'vue';
+import * as yup from 'yup';
+import { serviceUser } from '@/layouts/components/user/user';
+import { User } from '../../layouts/components/user/interface';
+
+const props = defineProps<{
+  dialogAdd: boolean;
+}>();
+
+const emits = defineEmits(['close', 'updateData']);
+
+const schema = yup.object({
+  name: yup
+    .string()
+    .required('Tên người dùng là bắt buộc')
+    .min(10, 'Name tối thiểu 10 kí tự')
+    .matches(
+      FORM_VALIDATION.codeRegExp,
+      'Không được chứa khoảng trắng và kí tự đặc biệt',
+    ),
+  email: yup.string().email('Email không đúng định dạng').required('Email là bắt buộc'),
+  birthday: yup
+    .date()
+    .required('Ngày sinh không được để trống')
+    .test('Ngày sinh không hợp lệ', (value) => {
+      const birthday = new Date(value);
+      const currentime = new Date();
+      return birthday <= currentime;
+    }),
+  phone: yup
+    .string()
+    .required('Phone không được để trống')
+    .matches(/^0\d{9,10}$/, 'Phone không hợp lệ'),
+  password: yup
+    .string()
+    .required('Password là bắt buộc')
+    .min(8, 'Password tối thiểu 8 ký tự')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/,
+      'Password phải chứa chữ cái thường, chữ in hoa và số',
+    ),
+});
+
+const { handleSubmit } = useForm({
+  validationSchema: schema,
+});
+
+const nameField = useField('name', '');
+const emailField = useField('email', '');
+const birthdayField = useField('birthday');
+const phoneField = useField('phone', '');
+const passwordField = useField('password', '');
+
+const resetForm = () => {
+  nameField.value = '';
+  emailField.value = '';
+  birthdayField.value = '';
+  phoneField.value = '';
+  passwordField.value = '';
 };
+
+const imageField = ref(null);
+const handleImageChange = (e) => {
+  const image = e.target.files[0];
+  imageField.value = image;
+};
+
+const addUser = handleSubmit(async () => {
+  try {
+    const formData = new FormData();
+    formData.append('name', nameField.value);
+    formData.append('password', passwordField.value);
+    formData.append('email', emailField.value);
+    formData.append('birthday', birthdayField.value);
+    formData.append('phone', phoneField.value);
+    formData.append('avatar', imageField.value);
+
+    const response = await serviceUser.addUser(formData);
+    console.log(response);
+
+    resetForm();
+
+    emits('close');
+    emits('updateData');
+  } catch (error) {
+    console.log('Error: ', error);
+  }
+});
 </script>
   
   <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap');
 .title-addnew {
-  font-family: "Public Sans", sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
 .text-name {
-  font-family: "Public Sans", sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 14px;
+}
+.error-message {
+  float: right;
+  font-size: 12px;
+  color: red;
 }
 </style>

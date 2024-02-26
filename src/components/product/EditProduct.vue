@@ -180,13 +180,10 @@
 </template>
   
   <script setup lang="ts">
-// import { useForm } from 'vee-validate';
-// import * as yup from 'yup';
 import { serviceProduct } from '../../layouts/components/product/product';
-import { computed, ref, watchEffect } from 'vue';
-import { Product } from '@/layouts/components/product/interface';
+import { ref, watchEffect } from 'vue';
+import { Product } from '../../layouts/components/product/interface';
 import { defineProps, defineEmits } from 'vue';
-// import { object } from 'yup';
 
 const props = defineProps<{
   dialogEdit: boolean;
@@ -201,13 +198,6 @@ const product = ref<Product>({
   description: '',
   image: null,
 });
-
-const imageFile = ref(null);
-
-const handleImageChange = (event) => {
-  const image = event.target.files[0];
-  imageFile.value = image;
-};
 
 const emits = defineEmits(['close', 'updateData']);
 
@@ -233,33 +223,12 @@ const updateProduct = async () => {
 };
 
 watchEffect(() => {
-  // product.value.id = props.currentProduct.id;
   product.value.name = props.currentProduct.name;
   product.value.price = props.currentProduct.price;
   product.value.quantity = props.currentProduct.quantity;
   product.value.description = props.currentProduct.description;
   product.value.image = props.currentProduct.image;
 });
-
-// const { errors, handleSubmit, defineField } = useForm({
-//   validationSchema: yup.object({
-//     name: yup.string().required('Không được để trống'),
-//     price: yup.string().required('Không được để trống'),
-//     quantity: yup.string().required('Không được để trống'),
-//     description: yup.string().max(255),
-//     image: yup.string().required('aalal'),
-//   }),
-// });
-
-// const onSubmit = handleSubmit((values) => {
-//   alert(JSON.stringify(values, null, 2));
-// });
-
-// const [name, nameAttrs] = defineField('name');
-// const [price, priceAttrs] = defineField('price');
-// const [quantity, quantityAttrs] = defineField('quantity');
-// const [description, descriptionAttrs] = defineField('description');
-// const [image, imageAttrs] = defineField('image');
 </script>
   
   <style scoped>
