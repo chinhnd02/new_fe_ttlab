@@ -123,12 +123,12 @@
                 font-size: 16px;
                 line-height: 24px;
                 height: 84px;
-                padding: 12px 12px 8px 12px;
+                padding: 12px 16px 8px 16px;
               "
             >
               {{ item.name }}</v-card-text
             >
-            <v-card-text class="text-price-product" style="padding: 12px">
+            <v-card-text class="text-price-product" style="padding: 16px">
               {{ formatMoney(item.price) }}
               <!-- <span
                 v-if="item.sale > 0"
@@ -148,11 +148,11 @@
                 {{ item.quantity }}% OFF
               </span> -->
             </v-card-text>
-            <p class="mt-2 ml-4 text-description">
+            <p class="mt-2 ml-4 text-description mr-4">
               {{ item.description }}
             </p>
             <v-row style="margin-top: 5px">
-              <v-col class="ml-3 mt-1" cols="5" style="display: flex">
+              <v-col class="ml-4 mt-1" cols="5" style="display: flex">
                 <div class="rating">
                   <input type="radio" id="star-1" name="star-radio" value="star-1" />
                   <label for="star-1">
@@ -206,7 +206,7 @@
                 <v-btn
                   width="88"
                   height="32"
-                  class="text-capitalize text-btn-watch mr-1"
+                  class="text-capitalize text-btn-watch mr-2"
                   color="primary"
                   size="small"
                   prepend-icon="mdi-heart-outline"

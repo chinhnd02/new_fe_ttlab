@@ -136,7 +136,7 @@ const formatMoney = (money) => {
             <tr>
               <th
                 class="text-table text-uppercase"
-                style="padding: 0 0 0 36px; max-height: 47px"
+                style="padding: 0 0 0 36px; height: 47px"
               >
                 Tên sản phẩm
               </th>
