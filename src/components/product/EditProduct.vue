@@ -207,6 +207,11 @@ const handleImageChange = (e: Event) => {
   }
 };
 
+// const handleImageChange = (e) => {
+//   const image = e.target.files[0];
+//   product.value.image = image;
+// };
+
 const emits = defineEmits(['close', 'updateData']);
 
 const updateProduct = async () => {

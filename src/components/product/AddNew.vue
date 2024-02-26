@@ -177,17 +177,12 @@ import { Product } from '../../layouts/components/product/interface';
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import * as yup from 'yup';
-import { FORM_VALIDATION } from '../../common/constants';
 
 const props = defineProps<{
   dialogAdd: boolean;
 }>();
 
 const emits = defineEmits(['close', 'updateData']);
-
-const resetForm = () => {
-  product.value = {};
-};
 
 const product = ref<Product>({
   name: '',
@@ -276,7 +271,6 @@ const addProduct = handleSubmit(async () => {
 
     const response = await serviceProduct.addProduct(formData);
     console.log(response);
-    // resetForm();
     // emptyForm();
 
     emits('close');

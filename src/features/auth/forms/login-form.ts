@@ -6,15 +6,11 @@ import { LoginProvider } from '../auth.constants';
 import { loginWithPasswordSchema } from '../schema';
 import { useAuthStore } from '../stores';
 import router from '@/plugins/vue-router';
-import isEmail from 'validator/lib/isEmail';
-import { isLength } from 'lodash';
-import isStrongPassword from 'validator/lib/isStrongPassword';
-// 
+import { isEmpty } from 'lodash';
 
 export const useLoginForm = () => {
 
   const authStore = useAuthStore();
-  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
   const { t } = useI18n();
   const {
     handleSubmit,
@@ -25,43 +21,17 @@ export const useLoginForm = () => {
   } = useForm({
     validationSchema: loginWithPasswordSchema,
   });
-  // const {
-  //   value: email,
-  //   setValue: setEmail,
-  //   errorMessage: emailError,
-  // } = useField<string>('email', (value: string) => {
-  //   const isValid = isEmail(value);
-  //   if (isValid) {
-  //     return 'Email không hợp lệ'
-  //   }
-  //   else if (value = "") {
-  //     return 'Không được để trống'
-  //   }
-  //   return true
-  //   // return isValid ? true : 'Email không hợp lệ'
-  // });
+
   const {
     value: email,
     setValue: setEmail,
     errorMessage: emailError,
-  } = useField<string>('email', (value: string) => {
-    if (!value) {
-      return 'Không được để trống';
-    } else if (!isEmail(value)) {
-      return 'Email không hợp lệ';
-    }
-    return true;
-  });
+  } = useField('email')
   const {
     value: password,
     setValue: setPassword,
     errorMessage: passwordError,
-  } = useField<string>('password', (value: string) => {
-    if (!passwordRegex.test(value)) {
-      return 'Mật khẩu phải chứa ít nhất một ký tự chữ và một số';
-    }
-    return true;
-  });
+  } = useField('password');
 
   const handleLogin = handleSubmit(async (values) => {
 

@@ -4,6 +4,8 @@ import logon from '@/assets/images/ttlab-logo.svg';
 import { LoadingOverlay } from '@/components';
 import { reactive, ref } from 'vue';
 import { useLoginForm } from '../../forms/login-form.ts';
+import { isEmpty } from 'lodash';
+import isEmail from 'validator/lib/isEmail';
 // import { useForm } from 'vee-validate';
 // import * as yup from 'yup';
 const loginForm = reactive(useLoginForm());
@@ -32,15 +34,23 @@ const visible = ref(false);
           variant="outlined"
           density="compact"
           color="primary"
+          type="email"
           :label="$t('auth.form.email')"
           :placeholder="$t('auth.form.placeholder.email')"
           :error="!!loginForm.emailError"
           single-line
           hide-details
         ></v-text-field>
-        <p class="mt-1" style="color: red; float: right" v-if="loginForm.emailError">
+        <!-- <p
+          class=""
+          style="color: red; float: right; font-size: 12px"
+          v-if="isEmpty(loginForm.email)"
+        >
+          Không được để trống
+        </p> -->
+        <!-- <p class="mt-1" style="color: red; float: right" v-if="loginForm.emailError">
           {{ loginForm.emailError }}
-        </p>
+        </p> -->
 
         <div
           class="text-email text-medium-emphasis mb-1 mt-5 font-weight-bold d-flex align-center justify-space-between"
@@ -61,9 +71,9 @@ const visible = ref(false);
           single-line
           hide-details
         ></v-text-field>
-        <p class="mt-1" style="color: red; float: right" v-if="loginForm.passwordError">
+        <!-- <p class="mt-1" style="color: red; float: right" v-if="loginForm.passwordError">
           {{ loginForm.passwordError }}
-        </p>
+        </p> -->
 
         <v-row class="mt-4">
           <v-checkbox label="Ghi nhớ Đăng nhập" class="font-weight-bold"></v-checkbox>
