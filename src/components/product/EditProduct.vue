@@ -133,7 +133,6 @@
           single-line
           class="bg-white mb-3"
           type="file"
-          @change="handleImageChange"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -200,12 +199,12 @@ const product = ref<Product>({
   image: null,
 });
 
-const handleImageChange = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  if (target.files && target.files[0]) {
-    product.value.image = target.files[0];
-  }
-};
+// const handleImageChange = (e: Event) => {
+//   const target = e.target as HTMLInputElement;
+//   if (target.files && target.files[0]) {
+//     product.value.image = target.files[0];
+//   }
+// };
 
 // const handleImageChange = (e) => {
 //   const image = e.target.files[0];

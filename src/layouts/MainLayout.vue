@@ -136,15 +136,41 @@ const formatMoney = (money) => {
             <tr>
               <th
                 class="text-table text-uppercase"
-                style="padding: 0 0 0 36px; height: 47px"
+                style="padding: 0 0 0 36px; height: 47px; max-width: 200px"
               >
                 Tên sản phẩm
               </th>
-              <th style="" class="text-table text-uppercase">Giá</th>
-              <th class="text-table text-uppercase">Số lượng</th>
-              <th class="text-table text-uppercase">Mô tả</th>
-              <th class="text-table text-uppercase">Ảnh</th>
-              <th class="text-table text-uppercase">Hành động</th>
+              <th
+                style="height: 47px; max-width: 165px !important"
+                class="text-table text-uppercase"
+              >
+                Giá
+              </th>
+              <th
+                style="height: 47px; max-width: 127px"
+                class="text-table text-uppercase"
+              >
+                Số lượng
+              </th>
+              <th
+                colspan="3"
+                style="height: 47px; max-width: 313px"
+                class="text-table text-uppercase"
+              >
+                Mô tả
+              </th>
+              <th
+                style="height: 47px; max-width: 142px"
+                class="text-table text-uppercase"
+              >
+                Ảnh
+              </th>
+              <th
+                style="height: 47px; max-width: 142px"
+                class="text-table text-uppercase"
+              >
+                Hành động
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -152,9 +178,10 @@ const formatMoney = (money) => {
               <td
                 class="text-left font-weight-bold"
                 style="
-                  padding: 0 0 0 36px;
+                  height: 58px;
+                  padding: 0 36px 0 36px;
                   white-space: nowrap;
-                  max-width: 150px;
+                  max-width: 100px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                 "
@@ -162,11 +189,14 @@ const formatMoney = (money) => {
                 {{ item.name }}
               </td>
 
-              <td class="text-left">{{ formatMoney(item.price) }}</td>
+              <td class="text-left" style="max-width: 165px">
+                {{ formatMoney(item.price) }}
+              </td>
               <td class="text-left">{{ item.quantity }}</td>
               <td
                 id="description"
                 class="text-left"
+                colspan="3"
                 style="
                   white-space: nowrap;
                   max-width: 150px;

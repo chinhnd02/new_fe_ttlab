@@ -123,7 +123,6 @@
           label="Nhập link ảnh sản phẩm"
           single-line
           @change="handleImageChange"
-          v-model="product.image"
           class="bg-white mb-3"
           type="file"
           accept="image/*"
