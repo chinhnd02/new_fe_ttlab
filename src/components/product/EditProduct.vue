@@ -132,6 +132,7 @@
           label="Nhập link ảnh sản phẩm"
           single-line
           class="bg-white mb-3"
+          @change="handleImageChange"
           type="file"
           hide-details
           flat
@@ -206,10 +207,12 @@ const product = ref<Product>({
 //   }
 // };
 
-// const handleImageChange = (e) => {
-//   const image = e.target.files[0];
-//   product.value.image = image;
-// };
+const imageField = ref(null);
+
+const handleImageChange = (e) => {
+  const image = e.target.files[0];
+  imageField.value = image;
+};
 
 const emits = defineEmits(['close', 'updateData']);
 
@@ -220,7 +223,7 @@ const updateProduct = async () => {
     formData.append('price', product.value.price);
     formData.append('quantity', product.value.quantity);
     formData.append('description', product.value.description);
-    formData.append('image', product.value.image);
+    formData.append('image', imageField.value);
 
     const newItem = await serviceProduct.editProduct(props.idProduct, formData);
     console.log(formData);

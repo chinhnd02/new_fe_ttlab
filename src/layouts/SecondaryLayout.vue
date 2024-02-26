@@ -146,26 +146,10 @@ const deleteUser = async () => {
               >
                 {{ item.name }}
               </td>
-              <td
-                style="
-                  padding: 18px 0 18px 18px;
-                  white-space: nowrap;
-                  max-width: 100px;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                "
-              >
+              <td style="padding: 18px 0 18px 18px">
                 {{ item.email }}
               </td>
-              <td
-                style="
-                  padding: 18px 0 18px 18px;
-                  white-space: nowrap;
-                  max-width: 100px;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                "
-              >
+              <td style="padding: 18px 0 18px 18px">
                 {{ formatTime(item.birthday) }}
               </td>
               <td
