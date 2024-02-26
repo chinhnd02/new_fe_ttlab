@@ -198,13 +198,11 @@ const product = ref<Product>({
 });
 
 const schema = yup.object({
-  name: yup
-    .string()
-    .required('Tên sản phẩm là bắt buộc')
-    .matches(
-      FORM_VALIDATION.codeRegExp,
-      'Không được chứa khoảng trắng và kí tự đặc biệt',
-    ),
+  name: yup.string().required('Tên sản phẩm là bắt buộc'),
+  // .matches(
+  //   FORM_VALIDATION.codeRegExp,
+  //   'Không được chứa khoảng trắng và kí tự đặc biệt',
+  // ),
   price: yup
     .number()
     .required('Giá sản phẩm là bắt buộc')

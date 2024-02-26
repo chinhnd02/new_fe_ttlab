@@ -25,13 +25,32 @@ export const useLoginForm = () => {
   } = useForm({
     validationSchema: loginWithPasswordSchema,
   });
+  // const {
+  //   value: email,
+  //   setValue: setEmail,
+  //   errorMessage: emailError,
+  // } = useField<string>('email', (value: string) => {
+  //   const isValid = isEmail(value);
+  //   if (isValid) {
+  //     return 'Email không hợp lệ'
+  //   }
+  //   else if (value = "") {
+  //     return 'Không được để trống'
+  //   }
+  //   return true
+  //   // return isValid ? true : 'Email không hợp lệ'
+  // });
   const {
     value: email,
     setValue: setEmail,
     errorMessage: emailError,
   } = useField<string>('email', (value: string) => {
-    const isValid = isEmail(value);
-    return isValid ? true : 'Email không hợp lệ'
+    if (!value) {
+      return 'Không được để trống';
+    } else if (!isEmail(value)) {
+      return 'Email không hợp lệ';
+    }
+    return true;
   });
   const {
     value: password,
@@ -41,9 +60,6 @@ export const useLoginForm = () => {
     if (!passwordRegex.test(value)) {
       return 'Mật khẩu phải chứa ít nhất một ký tự chữ và một số';
     }
-    // else if (!isValidLength) {
-    //   return 'Mật khẩu chứa ít nhất 8 kí tự';
-    // }
     return true;
   });
 

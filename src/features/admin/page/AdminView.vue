@@ -192,6 +192,13 @@ export default {
   color: #8b909a;
 }
 
+.list-item {
+  max-width: 232px;
+  height: 40px;
+  margin-left: 14px;
+  border-radius: 6px;
+}
+
 .text-option {
   font-family: 'Public Sans', sans-serif;
   font-weight: 600;
