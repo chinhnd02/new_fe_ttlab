@@ -119,11 +119,16 @@
             ></v-img>
             <v-card-text
               class="text-name-product"
-              style="font-size: 16px; line-height: 24px; height: 70px"
+              style="
+                font-size: 16px;
+                line-height: 24px;
+                height: 84px;
+                padding: 12px 12px 8px 12px;
+              "
             >
               {{ item.name }}</v-card-text
             >
-            <v-card-text class="mt-2 text-price-product">
+            <v-card-text class="text-price-product" style="padding: 12px">
               {{ formatMoney(item.price) }}
               <!-- <span
                 v-if="item.sale > 0"

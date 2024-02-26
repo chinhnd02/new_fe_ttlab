@@ -103,7 +103,7 @@
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
         ></v-text-field>
-        <span class="error-message">{{ birthdayField.errorMessage }}</span>
+        <!-- <span class="error-message">{{ birthdayField.errorMessage }}</span> -->
 
         <div
           class="text-medium-emphasis mt-4 d-flex align-center font-weight-bold text-name mb-2"
@@ -187,12 +187,10 @@
   
 
 <script setup lang="ts">
-import { FORM_VALIDATION } from '@/common/constants';
-import { FieldContext, useField, useForm } from 'vee-validate';
-import { Ref, ref } from 'vue';
+import { useField, useForm } from 'vee-validate';
+import { ref } from 'vue';
 import * as yup from 'yup';
-import { serviceUser } from '@/layouts/components/user/user';
-import { User } from '../../layouts/components/user/interface';
+import { serviceUser } from '../../layouts/components/user/user';
 
 const props = defineProps<{
   dialogAdd: boolean;
@@ -204,11 +202,11 @@ const schema = yup.object({
   name: yup
     .string()
     .required('Tên người dùng là bắt buộc')
-    .min(10, 'Name tối thiểu 10 kí tự')
-    .matches(
-      FORM_VALIDATION.codeRegExp,
-      'Không được chứa khoảng trắng và kí tự đặc biệt',
-    ),
+    .min(10, 'Name tối thiểu 10 kí tự'),
+  // .matches(
+  //   FORM_VALIDATION.codeRegExp,
+  //   'Không được chứa khoảng trắng và kí tự đặc biệt',
+  // ),
   email: yup.string().email('Email không đúng định dạng').required('Email là bắt buộc'),
   birthday: yup
     .date()
@@ -269,7 +267,13 @@ const addUser = handleSubmit(async () => {
     const response = await serviceUser.addUser(formData);
     console.log(response);
 
-    resetForm();
+    nameField.value.value = '';
+    passwordField.value.value = '';
+    emailField.value.value = '';
+    birthdayField.value.value = '';
+    passwordField.value.value = '';
+    phoneField.value.value = '';
+    imageField.value = null;
 
     emits('close');
     emits('updateData');

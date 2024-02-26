@@ -57,7 +57,6 @@
           variant="solo"
           label="Nhập giá sản phẩm"
           single-line
-          type="number"
           v-model="priceField.value.value"
           class="bg-white"
           hide-details
@@ -81,7 +80,6 @@
           variant="solo"
           label="Nhập số lượng sản phẩm"
           single-line
-          type="number"
           class="bg-white"
           v-model="quantityField.value.value"
           flat
@@ -199,11 +197,11 @@ const schema = yup.object({
   //   'Không được chứa khoảng trắng và kí tự đặc biệt',
   // ),
   price: yup
-    .number()
+    .string()
     .required('Giá sản phẩm là bắt buộc')
     .min(1, 'Giá sản phẩm không nhỏ hơn 1'),
   quantity: yup
-    .number()
+    .string()
     .required('Số lượng sản phẩm là bắt buộc')
     .min(1, 'Số lượng không được nhỏ hơn 0'),
   description: yup
@@ -232,34 +230,6 @@ const handleImageChange = (event) => {
   imageFile.value = image;
 };
 
-// const addProduct = async () => {
-//   try {
-//     const formData = new FormData();
-//     formData.append('name', product.value.name);
-//     formData.append('price', product.value.price);
-//     formData.append('quantity', product.value.quantity);
-//     formData.append('description', product.value.description);
-//     formData.append('image', imageFile.value);
-
-//     const response = await serviceProduct.addProduct(formData);
-//     console.log(response);
-//     resetForm();
-
-//     emits('close');
-//     emits('updateData');
-//   } catch (error) {
-//     console.error('Error', error);
-//   }
-// };
-
-const emptyForm = () => {
-  nameField.value = '';
-  priceField.value = '';
-  quantityField.value = '';
-  descriptionField.value = '';
-  imageFile.value = '';
-};
-
 const addProduct = handleSubmit(async () => {
   try {
     const formData = new FormData();
@@ -271,6 +241,12 @@ const addProduct = handleSubmit(async () => {
 
     const response = await serviceProduct.addProduct(formData);
     console.log(response);
+
+    nameField.value.value = '';
+    priceField.value.value = '';
+    quantityField.value.value = '';
+    descriptionField.value.value = '';
+    imageFile.value = null;
     // emptyForm();
 
     emits('close');
