@@ -203,15 +203,15 @@ const updateUser = async () => {
     formData.append('phone', userUpdate.value.phone);
     formData.append('avatar', userUpdate.value.avatar);
 
-    // const newItem = await serviceUser.editUser(props.idUser, formData);
-    const newItem = await serviceUser.editUser(props.idUser, {
-      name: userUpdate.value.name,
-      password: userUpdate.value.password,
-      email: userUpdate.value.email,
-      birthday: userUpdate.value.birthday,
-      phone: userUpdate.value.phone,
-      avatar: userUpdate.value.avatar,
-    });
+    const newItem = await serviceUser.editUser(props.idUser, formData);
+    // const newItem = await serviceUser.editUser(props.idUser, {
+    //   name: userUpdate.value.name,
+    //   password: userUpdate.value.password,
+    //   email: userUpdate.value.email,
+    //   birthday: userUpdate.value.birthday,
+    //   phone: userUpdate.value.phone,
+    //   avatar: userUpdate.value.avatar,
+    // });
     console.log(formData);
 
     if (newItem.success) {
