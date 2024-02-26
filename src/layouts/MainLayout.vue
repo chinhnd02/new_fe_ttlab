@@ -115,17 +115,15 @@ const formatMoney = (money) => {
           hide-details
         ></v-text-field>
       </v-col>
-      <v-col class="text-right mr-4 mt-5">
+      <v-col class="text-right mr-4 mt-3">
         <v-btn
           class="text-capitalize text-button"
           color="#0F60FF"
+          width="112"
+          height="40"
           @click="dialogAdd = true"
         >
-          <img
-            style="width: 16px; height: 16px"
-            src="../assets/image/icon.png"
-            alt=""
-          />Tạo
+          + Tạo
           <p class="text-lowercase">mới</p>
         </v-btn>
       </v-col>
@@ -137,13 +135,12 @@ const formatMoney = (money) => {
           <thead>
             <tr>
               <th
-                colspan="2"
                 class="text-table text-uppercase"
-                style="padding: 16px 0 16px 36px"
+                style="padding: 0 0 0 36px; max-height: 47px"
               >
                 Tên sản phẩm
               </th>
-              <th class="text-table text-uppercase">Giá</th>
+              <th style="" class="text-table text-uppercase">Giá</th>
               <th class="text-table text-uppercase">Số lượng</th>
               <th class="text-table text-uppercase">Mô tả</th>
               <th class="text-table text-uppercase">Ảnh</th>
@@ -153,12 +150,11 @@ const formatMoney = (money) => {
           <tbody>
             <tr v-for="(item, i) in searchProduct" :key="i">
               <td
-                colspan="2"
                 class="text-left font-weight-bold"
                 style="
-                  padding: 18px 0 18px 36px;
+                  padding: 0 0 0 36px;
                   white-space: nowrap;
-                  max-width: 100px;
+                  max-width: 150px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                 "
@@ -173,7 +169,7 @@ const formatMoney = (money) => {
                 class="text-left"
                 style="
                   white-space: nowrap;
-                  max-width: 100px;
+                  max-width: 150px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                 "
@@ -181,7 +177,7 @@ const formatMoney = (money) => {
                 {{ item.description }}
               </td>
               <td class="text-left">
-                <v-img style="height: 70px; width: 70px" :src="item.image"></v-img>
+                <v-img style="height: 35px; width: 35px" :src="item.image"></v-img>
               </td>
               <td class="text-left">
                 <v-btn
@@ -302,14 +298,17 @@ const formatMoney = (money) => {
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
 .text-table {
   font-family: 'Public Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 500 !important;
   font-size: 13px;
   line-height: 15.28px;
-  color: #8b909a;
+  color: #8b909a !important;
 }
+
 .text-button {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
 }
 #description {
   white-space: nowrap;

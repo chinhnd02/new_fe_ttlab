@@ -90,23 +90,21 @@ const deleteUser = async () => {
           variant="solo"
           v-model="search"
           label="Tìm kiếm"
+          style="max-width: 316px"
           append-inner-icon="mdi-magnify"
           single-line
           hide-details
         ></v-text-field>
-        <!-- {{ search }} -->
       </v-col>
-      <v-col class="text-right mr-4 mt-5">
+      <v-col class="text-right mr-4 mt-3">
         <v-btn
           class="text-capitalize text-button"
           color="#0F60FF"
+          width="112"
+          height="40"
           @click="dialogAdd = true"
         >
-          <img
-            style="width: 16px; height: 16px"
-            src="../assets/image/icon.png"
-            alt=""
-          />Tạo
+          + Tạo
           <p class="text-lowercase">mới</p>
         </v-btn>
       </v-col>
@@ -299,14 +297,16 @@ const deleteUser = async () => {
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
 .text-table {
   font-family: 'Public Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 500 !important;
   font-size: 13px;
   line-height: 15.28px;
-  color: #8b909a;
+  color: #8b909a !important;
 }
 .text-button {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
 }
 #description {
   white-space: nowrap;

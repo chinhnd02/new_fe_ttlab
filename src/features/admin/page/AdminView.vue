@@ -32,12 +32,17 @@
         prepend-icon="mdi mdi-package-variant-closed"
         title="Sản phẩm"
         @click="showProduct"
+        :class="option == 1 ? 'option' : 'non-option'"
+        style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi mdi-account-group"
         @click="showUser"
         link
         title="User"
+        class="text-option"
+        :class="option == 2 ? 'option' : 'non-option'"
+        style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
       ></v-list-item>
     </v-navigation-drawer>
 
@@ -47,6 +52,14 @@
       <v-app-bar-title class="title-admin ml-5">{{
         showProductList == true ? 'Danh sách sản phẩm' : 'Danh sách người dùng'
       }}</v-app-bar-title>
+      <v-badge content="4" class="mr-2" overlap color="red">
+        <v-icon icon="mdi mdi-bell-outline"></v-icon>
+      </v-badge>
+      <v-badge class="ml-4 mr-8" offset-x="50%" offset-y="50%" overlap color="green" dot>
+        <v-avatar>
+          <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
+        </v-avatar>
+      </v-badge>
     </v-app-bar>
 
     <v-main style="background-color: #f5f5f9">
@@ -70,10 +83,13 @@ const drawer = ref(null);
 const showProductList = ref(true);
 const showUserList = ref(false);
 
+const option = ref(1);
+
 const showProduct = () => {
   showProductList.value = true;
   showUserList.value = false;
   rail.value = true;
+  option.value = 1;
   console.log(showProductList.value, showUserList.value);
 };
 
@@ -81,6 +97,7 @@ const showUser = () => {
   rail.value = true;
   showProductList.value = false;
   showUserList.value = true;
+  option.value = 2;
   console.log(showProductList.value, showUserList.value);
 };
 
@@ -158,6 +175,7 @@ export default {
   font-size: 11px;
   line-height: 14px;
   color: #8b909a;
+  padding-left: 30px;
 }
 .title-admin {
   font-family: 'Public Sans', sans-serif;
@@ -165,5 +183,19 @@ export default {
   font-size: 24px;
   line-height: 22px;
   padding: 20px 0;
+}
+
+.option {
+  background-color: #f3f4f8;
+}
+.non-option {
+  color: #8b909a;
+}
+
+.text-option {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
 }
 </style>

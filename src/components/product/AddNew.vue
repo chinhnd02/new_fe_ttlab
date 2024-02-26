@@ -37,7 +37,7 @@
           single-line
           type="text"
           class="bg-white"
-          v-model="nameField.value"
+          v-model="nameField.value.value"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -58,7 +58,7 @@
           label="Nhập giá sản phẩm"
           single-line
           type="number"
-          v-model="priceField.value"
+          v-model="priceField.value.value"
           class="bg-white"
           hide-details
           flat
@@ -83,7 +83,7 @@
           single-line
           type="number"
           class="bg-white"
-          v-model="quantityField.value"
+          v-model="quantityField.value.value"
           flat
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -100,7 +100,7 @@
           variant="solo"
           placeholder="Nhập mô tả"
           single-line
-          v-model="descriptionField.value"
+          v-model="descriptionField.value.value"
           class="text-area"
           style="
             margin-bottom: 16px;
@@ -173,11 +173,11 @@
 
 <script setup lang="ts">
 import { serviceProduct } from '../../layouts/components/product/product';
-import { Product } from '@/layouts/components/product/interface';
-import { onMounted, ref } from 'vue';
+import { Product } from '../../layouts/components/product/interface';
+import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import * as yup from 'yup';
-import { FORM_VALIDATION } from '@/common/constants';
+import { FORM_VALIDATION } from '../../common/constants';
 
 const props = defineProps<{
   dialogAdd: boolean;
@@ -267,27 +267,19 @@ const emptyForm = () => {
   imageFile.value = '';
 };
 
-// onMounted(async () => {
-//   try {
-//     emptyForm();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 const addProduct = handleSubmit(async () => {
   try {
     const formData = new FormData();
-    formData.append('name', nameField.value);
-    formData.append('price', priceField.value);
-    formData.append('quantity', quantityField.value);
-    formData.append('description', descriptionField.value);
+    formData.append('name', nameField.value.value);
+    formData.append('price', priceField.value.value);
+    formData.append('quantity', quantityField.value.value);
+    formData.append('description', descriptionField.value.value);
     formData.append('image', imageFile.value);
 
     const response = await serviceProduct.addProduct(formData);
     console.log(response);
-    resetForm();
-    emptyForm();
+    // resetForm();
+    // emptyForm();
 
     emits('close');
     emits('updateData');

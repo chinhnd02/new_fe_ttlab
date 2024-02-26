@@ -37,7 +37,7 @@
           single-line
           type="text"
           class="bg-white"
-          v-model="nameField.value"
+          v-model="nameField.value.value"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -57,7 +57,7 @@
           label="Nhập email"
           single-line
           class="bg-white"
-          v-model="emailField.value"
+          v-model="emailField.value.value"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -78,7 +78,7 @@
           single-line
           type="password"
           class="bg-white"
-          v-model="passwordField.value"
+          v-model="passwordField.value.value"
           hide-details
           flat
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -98,7 +98,7 @@
           variant="solo"
           single-line
           class="bg-white"
-          v-model="birthdayField.value"
+          v-model="birthdayField.value.value"
           flat
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
@@ -118,7 +118,7 @@
           label="Nhập số điện thoại"
           single-line
           type="number"
-          v-model="phoneField.value"
+          v-model="phoneField.value.value"
           class="bg-white mb-3"
           hide-details
           flat
@@ -259,11 +259,11 @@ const handleImageChange = (e) => {
 const addUser = handleSubmit(async () => {
   try {
     const formData = new FormData();
-    formData.append('name', nameField.value);
-    formData.append('password', passwordField.value);
-    formData.append('email', emailField.value);
-    formData.append('birthday', birthdayField.value);
-    formData.append('phone', phoneField.value);
+    formData.append('name', nameField.value.value);
+    formData.append('password', passwordField.value.value);
+    formData.append('email', emailField.value.value);
+    formData.append('birthday', birthdayField.value.value);
+    formData.append('phone', phoneField.value.value);
     formData.append('avatar', imageField.value);
 
     const response = await serviceUser.addUser(formData);
