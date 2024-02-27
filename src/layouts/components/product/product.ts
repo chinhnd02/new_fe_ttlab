@@ -3,11 +3,10 @@ import axiosInstance, { ApiService } from "@/plugins/axios";
 import { Product } from "./interface";
 
 class ProductService extends ApiService {
-
     async getAllProduct(): Promise<IBodyResponse<IGetListResponse<Product>>> {
         return this.client.get(`${this.baseUrl}`);
-
     }
+
     async addProduct(product: Product): Promise<IBodyResponse<Product>> {
         return this.client.post(`${this.baseUrl}`, product, {
             headers: {

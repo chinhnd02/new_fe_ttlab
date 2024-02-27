@@ -16,7 +16,11 @@ class UserService extends ApiService {
     }
 
     async editUser(id: string, user: User): Promise<IBodyResponse<User>> {
-        return this.client.patch(`${this.baseUrl}/${id}`, user);
+        return this.client.patch(`${this.baseUrl}/${id}`, user, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
     }
 
     async deleteUSer(id: number): Promise<IBodyResponse<User>> {

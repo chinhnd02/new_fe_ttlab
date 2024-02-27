@@ -126,7 +126,8 @@
           label="Avatar"
           single-line
           class="bg-white"
-          v-model="user.avatar"
+          @change="handleImageChange"
+          type="file"
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
@@ -193,6 +194,12 @@ const user = ref<User>({
   avatar: null,
 });
 
+const imageField = ref(null);
+const handleImageChange = (e) => {
+  const image = e.target.files[0];
+  imageField.value = image;
+};
+
 const updateUser = async () => {
   try {
     const formData = new FormData();
@@ -201,7 +208,7 @@ const updateUser = async () => {
     formData.append('email', user.value.email);
     formData.append('birthday', user.value.birthday);
     formData.append('phone', user.value.phone);
-    formData.append('avatar', user.value.avatar);
+    formData.append('avatar', imageField.value);
 
     const newItem = await serviceUser.editUser(props.idUser, formData);
     console.log(formData);
