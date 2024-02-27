@@ -38,6 +38,16 @@ class LocalStorageAuthService {
     storage.setLocalStorage(AUTH_SERVICE_KEY.ACCESS_TOKEN_EXPIRED_AT, '');
   }
 
+  setRefreshToken(token: string): void {
+    storage.setLocalStorage(AUTH_SERVICE_KEY.REFRESH_TOKEN, token);
+  }
+
+  setRefresh_TokenExpiredAt(expiredIn: number): void {
+    const expiredAt = new Date().getTime() + expiredIn * 1000 - BUFFER_TIME;
+    storage.setLocalStorage(AUTH_SERVICE_KEY.REFRESH_TOKEN_EXPIRED_AT, String(expiredAt));
+  }
+
+
   // LANGUAGE
   setLanguage(value: SupportLanguage): void {
     storage.setLocalStorage(AUTH_SERVICE_KEY.LANGUAGE, value);

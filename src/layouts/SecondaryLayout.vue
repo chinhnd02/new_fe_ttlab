@@ -118,14 +118,21 @@ const deleteUser = async () => {
         <v-table style="border-radius: 12px 12px 0 0">
           <thead>
             <tr>
-              <th class="text-table text-uppercase" style="padding: 16px 0 16px 36px">
+              <th
+                class="text-table text-uppercase"
+                style="padding: 16px 0 16px 36px; height: 47px"
+              >
                 Avartar
               </th>
-              <th class="text-table text-uppercase">Tên người dùng</th>
-              <th class="text-table text-uppercase">Email</th>
-              <th class="text-table text-uppercase">Ngày sinh</th>
-              <th class="text-table text-uppercase">Số điện thoại</th>
-              <th class="text-table text-uppercase">Hành động</th>
+              <th style="height: 47px" class="text-table text-uppercase">
+                Tên người dùng
+              </th>
+              <th style="height: 47px" class="text-table text-uppercase">Email</th>
+              <th style="height: 47px" class="text-table text-uppercase">Ngày sinh</th>
+              <th style="height: 47px" class="text-table text-uppercase">
+                Số điện thoại
+              </th>
+              <th style="height: 47px" class="text-table text-uppercase">Hành động</th>
             </tr>
           </thead>
           <tbody>

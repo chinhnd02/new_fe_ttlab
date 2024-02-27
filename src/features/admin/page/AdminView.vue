@@ -55,11 +55,48 @@
       <v-badge content="4" class="mr-2" overlap color="red">
         <v-icon icon="mdi mdi-bell-outline"></v-icon>
       </v-badge>
-      <v-badge class="ml-4 mr-8" offset-x="50%" offset-y="50%" overlap color="green" dot>
-        <v-avatar>
+      <!-- <v-badge class="ml-4 mr-8" offset-x="50%" offset-y="50%" overlap color="green" dot>
+        <v-avatar @click="dialogProfile = true">
           <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
         </v-avatar>
-      </v-badge>
+      </v-badge> -->
+
+      <v-menu open-on-hover>
+        <template v-slot:activator="{ props }">
+          <v-badge
+            v-bind="props"
+            class="ml-4 mr-8"
+            offset-x="50%"
+            offset-y="50%"
+            overlap
+            color="green"
+            dot
+          >
+            <v-avatar @click="dialogProfile = true">
+              <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
+            </v-avatar>
+          </v-badge>
+          <!-- <v-btn color="primary" v-bind="props"> Dropdown </v-btn> -->
+        </template>
+
+        <v-list>
+          <!-- <v-list-item v-for="(item, index) in items" :key="index">
+            <v-list-item-title style="cursor: pointer">{{
+              item.title
+            }}</v-list-item-title>
+          </v-list-item> -->
+          <v-list-item style="padding: 0">
+            <v-list-item-title class="item-title d-flex align-center justify-center"
+              >Xem profile</v-list-item-title
+            >
+            <v-list-item-title
+              class="item-title d-flex align-center justify-center"
+              @click="logout"
+              >Đăng xuất</v-list-item-title
+            >
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main style="background-color: #f5f5f9">
@@ -77,6 +114,7 @@ import { useSidebarStore } from '@/common/stores';
 import SecondaryLayout from '@/layouts/SecondaryLayout.vue';
 // import MainLayout from '@/layouts/SecondaryLayout.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
+import router from '@/plugins/vue-router';
 
 const drawer = ref(null);
 
@@ -84,6 +122,10 @@ const showProductList = ref(true);
 const showUserList = ref(false);
 
 const option = ref(1);
+
+const Profile = ref(false);
+
+const items = ref([{ title: 'Xem profile' }, { title: 'Đăng xuất' }]);
 
 const showProduct = () => {
   showProductList.value = true;
@@ -115,6 +157,11 @@ const toggleCollapse = () => {
     rail.value = !rail.value;
   }
   sidebarStore.setRail(rail.value);
+};
+
+const logout = async () => {
+  router.push('/login');
+  localStorage.clear();
 };
 </script>
   
@@ -204,5 +251,16 @@ export default {
   font-weight: 600;
   font-size: 15px;
   line-height: 22px;
+}
+.item-title {
+  cursor: pointer;
+  height: 37px;
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 0 15px;
+}
+.item-title:hover {
+  background-color: #e1e3e9;
 }
 </style>

@@ -26,12 +26,12 @@ export const useLoginForm = () => {
     value: email,
     setValue: setEmail,
     errorMessage: emailError,
-  } = useField('email')
+  } = useField<string>('email')
   const {
     value: password,
     setValue: setPassword,
     errorMessage: passwordError,
-  } = useField('password');
+  } = useField<string>('password');
 
   const handleLogin = handleSubmit(async (values) => {
 

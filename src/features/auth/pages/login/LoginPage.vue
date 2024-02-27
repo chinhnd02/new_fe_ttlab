@@ -2,7 +2,7 @@
 // import logo from '@/assets/images/logo.svg';
 import logon from '@/assets/images/ttlab-logo.svg';
 import { LoadingOverlay } from '@/components';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { useLoginForm } from '../../forms/login-form.ts';
 import { isEmpty } from 'lodash';
 import isEmail from 'validator/lib/isEmail';
@@ -13,6 +13,14 @@ const loginForm = reactive(useLoginForm());
 const loading = ref(false);
 
 const visible = ref(false);
+
+// const validateEmail = computed(() => {
+//   if (isEmpty(loginForm.email)) {
+//     return 'Không được để trống';
+//   } else if (isEmail(loginForm.email)) {
+//     return 'Email không đúng định dạng';
+//   }
+// });
 </script>
 <template>
   <LoadingOverlay :loading="loading" bg-color="#FFF" :opacity="1" />
@@ -41,16 +49,13 @@ const visible = ref(false);
           single-line
           hide-details
         ></v-text-field>
-        <!-- <p
+        <p
           class=""
-          style="color: red; float: right; font-size: 12px"
-          v-if="isEmpty(loginForm.email)"
+          style="color: red; float: right; padding: 0; font-size: 12px"
+          v-if="loginForm.emailError"
         >
-          Không được để trống
-        </p> -->
-        <!-- <p class="mt-1" style="color: red; float: right" v-if="loginForm.emailError">
-          {{ loginForm.emailError }}
-        </p> -->
+          {{ isEmail(loginForm.email) ? '' : 'Email không đúng định dạng' }}
+        </p>
 
         <div
           class="text-email text-medium-emphasis mb-1 mt-5 font-weight-bold d-flex align-center justify-space-between"
@@ -71,11 +76,15 @@ const visible = ref(false);
           single-line
           hide-details
         ></v-text-field>
-        <!-- <p class="mt-1" style="color: red; float: right" v-if="loginForm.passwordError">
-          {{ loginForm.passwordError }}
-        </p> -->
+        <p
+          class=""
+          style="color: red; float: right; padding: 0; font-size: 12px"
+          v-if="loginForm.passwordError"
+        >
+          {{ isEmpty(loginForm.password) ? 'Không được để trống' : '' }}
+        </p>
 
-        <v-row class="mt-4">
+        <v-row class="mt-5">
           <v-checkbox label="Ghi nhớ Đăng nhập" class="font-weight-bold"></v-checkbox>
 
           <p class="forgot-pass mt-5 mr-4">Quên mật khẩu?</p>

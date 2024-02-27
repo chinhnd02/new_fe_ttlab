@@ -11,7 +11,7 @@ export const logout = (redirectToLogin = true) => {
     router
       .push({ name: PageName.LOGIN_PAGE })
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .catch(() => {});
+      .catch(() => { });
   }
 };
 
@@ -19,10 +19,16 @@ export const sendRefreshToken = async () => {
   let response;
   try {
     const API_URL = import.meta.env.VUE_APP_API_URL;
-    response = await axios.get(`${API_URL}/auth/token`, { withCredentials: true });
+    response = await axios.post(`${API_URL}/auth/refreshToken`, { withCredentials: true });
     if (response?.status === HttpStatus.OK) {
-      localStorageAuthService.setAccessToken(response.data?.data.accessToken);
-      localStorageAuthService.setAccessTokenExpiredAt(response.data?.data.expiresIn);
+      // localStorageAuthService.setAccessToken(response.data?.data.accessToken);
+      // localStorageAuthService.setAccessTokenExpiredAt(response.data?.data.expiresIn);
+
+      localStorageAuthService.setAccessToken(response.data?.accessToken.token);
+      localStorageAuthService.setAccessTokenExpiredAt(response.data?.accessToken.expriesIn);
+
+      localStorageAuthService.setRefreshToken(response.data?.refreshToken.token);
+      localStorageAuthService.setRefresh_TokenExpiredAt(response.data?.refreshToken.expiresIn)
       return;
     }
     logout(true);
