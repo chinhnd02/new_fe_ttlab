@@ -218,7 +218,7 @@ const formatMoney = (money) => {
                     (dialogEdit = true), (currentProduct = item), (idProduct = item.id)
                   "
                 >
-                  <v-icon icon="mdi mdi-square-edit-outline"></v-icon>
+                  <v-icon color="#8B909A" icon="mdi mdi-square-edit-outline"></v-icon>
                 </v-btn>
                 <v-btn
                   icon
@@ -226,7 +226,7 @@ const formatMoney = (money) => {
                   flat
                   @click="(dialogDelete = true), (id = item.id)"
                 >
-                  <v-icon icon="mdi mdi-trash-can-outline"> </v-icon>
+                  <v-icon color="#8B909A" icon="mdi mdi-trash-can-outline"> </v-icon>
                 </v-btn>
               </td>
               <hr />
@@ -235,6 +235,7 @@ const formatMoney = (money) => {
         </v-table>
       </v-col>
     </v-row>
+    <v-divider :width="1213" class="pa-1"></v-divider>
     <div style="background-color: white; border-radius: 0 0 12px 12px" class="mr-5 mb-10">
       <v-row>
         <v-col cols="7">

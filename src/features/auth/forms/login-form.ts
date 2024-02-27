@@ -37,11 +37,11 @@ export const useLoginForm = () => {
 
     // console.log(values.email);
 
+
     const res = await authStore.login({
       email: values.email,
       password: values.password,
       provider: LoginProvider.EMAIL,
-
     });
 
     if (res.success) {
