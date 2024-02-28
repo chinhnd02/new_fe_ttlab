@@ -5,6 +5,7 @@ import { useUser } from '../layouts/components/user/user.store';
 import { serviceUser } from '../layouts/components/user/user';
 import EditUser from '../components/user/EditUser.vue';
 import AddUser from '../components/user/AddUser.vue';
+import { showSuccessNotification } from '@/common/helpers';
 
 const { fetchUser, query } = useUser();
 
@@ -73,7 +74,7 @@ const deleteUser = async () => {
     const response = await serviceUser.deleteUSer(id.value);
     dialogDelete.value = false;
     getAllUser();
-
+    showSuccessNotification('Xóa người dùng thành công');
     console.log('Da xoa: ', response);
   } catch (error) {
     console.error('Loiiiiiiiiiiiiiiiiiiiiii!');
@@ -140,12 +141,12 @@ const deleteUser = async () => {
               <td class="">
                 <v-img
                   class="ml-4"
-                  style="width: 35px; height: 35px"
+                  style="width: 35px; height: 35px; border-radius: 2px"
                   :src="item.avatar"
                 ></v-img>
               </td>
               <td
-                class="font-weight-bold"
+                class="text-name-user"
                 style="
                   padding: 18px 0 18px 18px;
                   white-space: nowrap;
@@ -156,13 +157,14 @@ const deleteUser = async () => {
               >
                 {{ item.name }}
               </td>
-              <td style="padding: 18px 0 18px 18px">
+              <td style="padding: 18px 0 18px 18px" class="text-price-user">
                 {{ item.email }}
               </td>
-              <td style="padding: 18px 0 18px 18px">
+              <td style="padding: 18px 0 18px 18px" class="text-price-user">
                 {{ formatTime(item.birthday) }}
               </td>
               <td
+                class="text-price-user"
                 style="
                   padding: 18px 0 18px 18px;
                   white-space: nowrap;
@@ -307,5 +309,18 @@ const deleteUser = async () => {
   width: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.text-name-user {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+}
+.text-price-user {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
 }
 </style>

@@ -8,6 +8,7 @@ import { serviceProduct } from '../layouts/components/product/product';
 import numeral from 'numeral';
 import { DEFAULT_LIMIT_FOR_PAGINATION } from '@/common/constants';
 import { useProduct } from '../layouts/components/product/product.store';
+import { showSuccessNotification } from '@/common/helpers';
 
 const { fetchProducts, query } = useProduct();
 
@@ -80,6 +81,7 @@ const deleteProduct = async () => {
     const response = await serviceProduct.deleteProduct(id.value);
     dialogDelete.value = false;
     getAllProduct();
+    showSuccessNotification('Xóa sản phẩm thành công');
 
     console.log('Da xoa: ', response);
   } catch (error) {
@@ -176,7 +178,7 @@ const formatMoney = (money) => {
           <tbody>
             <tr v-for="(item, i) in searchProduct" :key="i">
               <td
-                class="text-left font-weight-bold"
+                class="text-left text-name-product"
                 style="
                   height: 58px;
                   padding: 0 36px 0 36px;
@@ -189,13 +191,13 @@ const formatMoney = (money) => {
                 {{ item.name }}
               </td>
 
-              <td class="text-left" style="max-width: 165px">
+              <td class="text-left text-price-product" style="max-width: 165px">
                 {{ formatMoney(item.price) }}
               </td>
-              <td class="text-left">{{ item.quantity }}</td>
+              <td class="text-left text-price-product">{{ item.quantity }}</td>
               <td
                 id="description"
-                class="text-left"
+                class="text-left text-price-product"
                 colspan="3"
                 style="
                   white-space: nowrap;
@@ -207,7 +209,10 @@ const formatMoney = (money) => {
                 {{ item.description }}
               </td>
               <td class="text-left">
-                <v-img style="height: 35px; width: 35px" :src="item.image"></v-img>
+                <v-img
+                  style="height: 35px; width: 35px; border-radius: 2px"
+                  :src="item.image"
+                ></v-img>
               </td>
               <td class="text-left">
                 <v-btn
@@ -340,12 +345,26 @@ const formatMoney = (money) => {
   font-size: 14px;
   font-weight: 600;
   line-height: 16px;
+  color: #ffffff;
 }
 #description {
   white-space: nowrap;
   width: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.text-name-product {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+}
+.text-price-product {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
 }
 </style>
 

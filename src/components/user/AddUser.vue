@@ -191,6 +191,7 @@ import { useField, useForm } from 'vee-validate';
 import { ref } from 'vue';
 import * as yup from 'yup';
 import { serviceUser } from '../../layouts/components/user/user';
+import { showSuccessNotification } from '@/common/helpers';
 
 const props = defineProps<{
   dialogAdd: boolean;
@@ -277,6 +278,7 @@ const addUser = handleSubmit(async () => {
 
     emits('close');
     emits('updateData');
+    showSuccessNotification('Thêm người dùng thành công');
   } catch (error) {
     console.log('Error: ', error);
   }

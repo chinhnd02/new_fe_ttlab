@@ -174,6 +174,7 @@ import { Product } from '../../layouts/components/product/interface';
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import * as yup from 'yup';
+import { showErrorNotification, showSuccessNotification } from '@/common/helpers';
 
 const props = defineProps<{
   dialogAdd: boolean;
@@ -239,6 +240,7 @@ const addProduct = handleSubmit(async () => {
     formData.append('image', imageFile.value);
 
     const response = await serviceProduct.addProduct(formData);
+
     console.log(response);
 
     nameField.value.value = '';
@@ -250,7 +252,10 @@ const addProduct = handleSubmit(async () => {
 
     emits('close');
     emits('updateData');
+
+    showSuccessNotification('Thêm sản phẩm thành công');
   } catch (error) {
+    showErrorNotification('Thêm sản phẩm thất bại');
     console.error('Error', error);
   }
 });

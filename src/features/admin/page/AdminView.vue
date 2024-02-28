@@ -7,6 +7,7 @@
       :permanent="true"
       :width="width"
       @click="toggleCollapse"
+      style="border: none"
     >
       <!--  -->
       <v-list-item title="" subtitle="" class="align-center justify-center">
