@@ -25,10 +25,10 @@ const visible = ref(false);
 <template>
   <LoadingOverlay :loading="loading" bg-color="#FFF" :opacity="1" />
   <div class="h-100 d-flex align-center justify-center">
-    <v-card width="426" flat rounded="lg" class="pb-5">
+    <v-card width="426" height="476" flat rounded="lg" class="pb-5">
       <v-card-title>
         <v-img :src="logon" :lazy-src="logon" :height="60"></v-img>
-        <p class="mt-4 text-center text-title">Đăng nhập</p>
+        <p class="mt-6 text-center text-title">Đăng nhập</p>
       </v-card-title>
 
       <v-card-text style="padding: 0 1px">
@@ -81,7 +81,13 @@ const visible = ref(false);
           style="color: red; float: right; padding: 0; font-size: 12px"
           v-if="loginForm.passwordError"
         >
-          {{ isEmpty(loginForm.password) ? 'Không được để trống' : '' }}
+          {{
+            isEmpty(loginForm.password)
+              ? 'Không được để trống'
+              : '' || !/(?=.*\d)(?=.*[a-zA-Z])/.test(loginForm.password)
+              ? 'Mật khẩu phải chứa ít nhất một chữ cái và một số'
+              : ''
+          }}
         </p>
 
         <v-row class="mt-5">

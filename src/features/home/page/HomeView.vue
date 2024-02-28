@@ -1,264 +1,256 @@
 <template>
-  <div style="width: 1114px; margin: auto">
-    <!-- <v-container> -->
-    <v-row class="ml-3 mt-3">
-      <v-row class="mt-3">
-        <v-select
-          class="ml-4"
-          v-model="SelectedCategory"
-          density="compact"
-          label="SORT BY"
-          style="max-width: 136px"
-          :items="['All', 'Quần', 'Áo']"
-          variant="outlined"
-        ></v-select>
-        <v-select
-          class="ml-4"
-          v-model="selectedSort"
-          style="max-width: 112px"
-          label="Giá"
-          density="compact"
-          :items="['Từ cao -> thấp', 'Từ thấp -> cao']"
-          variant="outlined"
-        ></v-select>
-        <v-select
-          class="ml-4"
-          style="max-width: 152px"
-          density="compact"
-          :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
-          variant="outlined"
-        ></v-select>
-      </v-row>
-      <!-- <v-col>
-        
-      </v-col>
-      <v-col cols="4" sm="6" md="6" lg="2">
-        
-      </v-col>
-      <v-col cols="4" sm="6" md="6" lg="2">
-        
-      </v-col>   -->
-      <v-col cols="12" sm="6" md="6" lg="6" class="text-right">
-        <v-btn
-          class="text-capitalize"
-          @click="s = 1"
-          :class="s == 1 ? 'selectAction' : 'notSelect'"
-          flat
-        >
-          Show all
-        </v-btn>
-        <v-btn
-          class="text-capitalize"
-          @click="s = 2"
-          :class="s == 2 ? 'selectAction' : 'notSelect'"
-          flat
-        >
-          Action
-        </v-btn>
-        <v-btn
-          class="text-capitalize"
-          @click="s = 3"
-          :class="s == 3 ? 'selectAction' : 'notSelect'"
-          flat
-        >
-          Buy now
-        </v-btn>
-        <v-btn
-          class="ml-6"
-          @click="ss = 1"
-          :class="ss == 1 ? 'selectAction' : 'notSelect'"
-        >
-          <v-icon>mdi mdi-menu</v-icon>
-        </v-btn>
-        <v-btn
-          class="mr-5"
-          @click="ss = 2"
-          :class="ss == 2 ? 'selectAction' : 'notSelect'"
-        >
-          <v-icon>mdi mdi-microsoft</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row class="mr-3 mt-10">
-      <v-col cols="12">
-        <v-chip class="text-relate mr-1 ml-4" style="padding: 0" variant="text"
-          >Related</v-chip
-        >
-        <v-chip class="mr-2 text-chip"> worldwide shipping </v-chip>
-        <v-chip class="mr-2 text-chip"> under $50 </v-chip>
-        <v-chip class="mr-2 text-chip"> kitten </v-chip>
-        <v-chip class="mr-2 text-chip"> plastic plugs </v-chip>
-        <v-chip class="mr-2 text-chip"> pucker shoes </v-chip>
-        <v-chip class="mr-2 text-chip"> vintage typewriter </v-chip>
-      </v-col>
-    </v-row>
-    <v-card class="custom-shadow">
-      <v-row class="mr-3 ml-3 mt-1">
-        <v-col
-          class="d-flex flex-column justify-center align-center"
-          v-for="item in products.value"
-          :key="item"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <v-card
-            hover
-            variant="flat"
-            width="259px"
-            style="min-height: 472px"
-            class="mb-3 my-card"
-          >
-            <v-img
-              class="mx-auto mt-2"
-              width="227px"
-              height="224px"
-              :src="item.image"
-              alt="Product Image"
-            ></v-img>
-            <v-card-text
-              class="text-name-product"
-              style="
-                font-size: 16px;
-                line-height: 24px;
-                height: 84px;
-                padding: 12px 16px 8px 16px;
-              "
-            >
-              {{ item.name }}</v-card-text
-            >
-            <v-card-text class="text-price-product" style="padding: 16px">
-              {{ formatMoney(item.price) }}
-              <!-- <span
-                v-if="item.sale > 0"
-                style="
-                  margin-right: -1.5%;
-                  font-size: 12px;
-                  float: right;
-                  min-width: 70px;
-                  min-height: 24px;
-                  padding: 2px;
-                  background-color: #e2f3e8;
-                  text-align: center;
-                  color: #1cee65;
-                  font-weight: 300;
-                "
-              >
-                {{ item.quantity }}% OFF
-              </span> -->
-            </v-card-text>
-            <p class="mt-2 ml-4 text-description mr-4">
-              {{ item.description }}
-            </p>
-            <v-row style="margin-top: 5px">
-              <v-col class="ml-4 mt-1" cols="5" style="display: flex">
-                <div class="rating">
-                  <input type="radio" id="star-1" name="star-radio" value="star-1" />
-                  <label for="star-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        pathLength="360"
-                        d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                      ></path>
-                    </svg>
-                  </label>
-                  <input type="radio" id="star-2" name="star-radio" value="star-1" />
-                  <label for="star-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        pathLength="360"
-                        d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                      ></path>
-                    </svg>
-                  </label>
-                  <input type="radio" id="star-3" name="star-radio" value="star-1" />
-                  <label for="star-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        pathLength="360"
-                        d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                      ></path>
-                    </svg>
-                  </label>
-                  <input type="radio" id="star-4" name="star-radio" value="star-1" />
-                  <label for="star-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        pathLength="360"
-                        d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                      ></path>
-                    </svg>
-                  </label>
-                  <input type="radio" id="star-5" name="star-radio" value="star-1" />
-                  <label for="star-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        pathLength="360"
-                        d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                      ></path>
-                    </svg>
-                  </label>
-                </div>
-                <p class="text-rating" style="margin-top: 2px; margin-left: 2px">4.05</p>
-              </v-col>
-              <v-col class="text-right" cols="6">
-                <v-btn
-                  width="88"
-                  height="32"
-                  class="text-capitalize text-btn-watch mr-2"
-                  color="primary"
-                  size="small"
-                  prepend-icon="mdi-heart-outline"
-                  variant="outlined"
-                >
-                  Watch
-                </v-btn>
-              </v-col>
+  <div>
+    <AppBarView />
+    <TopNav />
+
+    <div style="max-width: 1492px; margin: auto">
+      <Department style="max-width: 355px; float: left" />
+
+      <div style="width: 1114px; float: right" class="mt-10">
+        <!-- <v-container> -->
+        <v-card class="custom-shadow">
+          <v-row class="ml-3 mt-3">
+            <v-row class="mt-3">
+              <v-select
+                class="ml-4"
+                v-model="SelectedCategory"
+                density="compact"
+                label="SORT BY"
+                style="max-width: 136px"
+                :items="['All', 'Quần', 'Áo']"
+                variant="outlined"
+              ></v-select>
+              <v-select
+                class="ml-4"
+                v-model="selectedSort"
+                style="max-width: 112px"
+                label="Giá"
+                density="compact"
+                :items="['Từ cao -> thấp', 'Từ thấp -> cao']"
+                variant="outlined"
+              ></v-select>
+              <v-select
+                class="ml-4"
+                style="max-width: 152px"
+                density="compact"
+                :items="[
+                  'California',
+                  'Colorado',
+                  'Florida',
+                  'Georgia',
+                  'Texas',
+                  'Wyoming',
+                ]"
+                variant="outlined"
+              ></v-select>
             </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-card>
-    <v-row class="ma-1">
-      <v-col cols="12" sm="12" md="12" lg="4">
-        <v-card
-          class="pa-5 d-flex flex-column justify-center align-center rounded-1"
-          style="min-height: 156px; background-color: #ededf0"
-        >
-          <img width="80" height="80" :src="footer1" />
-          <v-card-title class="text-center">Clear & Usable user flows</v-card-title>
-          <v-card-subtitle class="text-center"
-            >Let’s boost your marketplace</v-card-subtitle
-          >
+            <v-col cols="12" sm="6" md="6" lg="6" class="text-right">
+              <v-btn
+                class="text-capitalize"
+                @click="s = 1"
+                :class="s == 1 ? 'selectAction' : 'notSelect'"
+                flat
+              >
+                Show all
+              </v-btn>
+              <v-btn
+                class="text-capitalize"
+                @click="s = 2"
+                :class="s == 2 ? 'selectAction' : 'notSelect'"
+                flat
+              >
+                Action
+              </v-btn>
+              <v-btn
+                class="text-capitalize"
+                @click="s = 3"
+                :class="s == 3 ? 'selectAction' : 'notSelect'"
+                flat
+              >
+                Buy now
+              </v-btn>
+              <v-btn
+                class="ml-6"
+                @click="ss = 1"
+                :class="ss == 1 ? 'selectAction' : 'notSelect'"
+              >
+                <v-icon>mdi mdi-menu</v-icon>
+              </v-btn>
+              <v-btn
+                class="mr-5"
+                @click="ss = 2"
+                :class="ss == 2 ? 'selectAction' : 'notSelect'"
+              >
+                <v-icon>mdi mdi-microsoft</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+          <v-row class="mr-3 mt-10">
+            <v-col cols="12">
+              <v-chip class="text-relate mr-1 ml-4" style="padding: 0" variant="text"
+                >Related</v-chip
+              >
+              <v-chip class="mr-2 text-chip"> worldwide shipping </v-chip>
+              <v-chip class="mr-2 text-chip"> under $50 </v-chip>
+              <v-chip class="mr-2 text-chip"> kitten </v-chip>
+              <v-chip class="mr-2 text-chip"> plastic plugs </v-chip>
+              <v-chip class="mr-2 text-chip"> pucker shoes </v-chip>
+              <v-chip class="mr-2 text-chip"> vintage typewriter </v-chip>
+            </v-col>
+          </v-row>
+          <v-row class="mr-3 ml-3 mt-1">
+            <v-col
+              class="d-flex flex-column justify-center align-center"
+              v-for="item in products.value"
+              :key="item"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <v-card
+                hover
+                variant="flat"
+                width="259px"
+                style="min-height: 472px"
+                class="mb-3 my-card"
+              >
+                <v-img
+                  class="mx-auto mt-2"
+                  width="227px"
+                  height="224px"
+                  :src="item.image"
+                  alt="Product Image"
+                ></v-img>
+                <v-card-text
+                  class="text-name-product"
+                  style="
+                    font-size: 16px;
+                    line-height: 24px;
+                    height: 84px;
+                    padding: 12px 16px 8px 16px;
+                  "
+                >
+                  {{ item.name }}</v-card-text
+                >
+                <v-card-text class="text-price-product" style="padding: 16px">
+                  {{ formatMoney(item.price) }}
+                </v-card-text>
+                <p class="mt-2 ml-4 text-description mr-4">
+                  {{ item.description }}
+                </p>
+                <v-row style="margin-top: 5px">
+                  <v-col class="ml-4 mt-1" cols="5" style="display: flex">
+                    <div class="rating">
+                      <input type="radio" id="star-1" name="star-radio" value="star-1" />
+                      <label for="star-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path
+                            pathLength="360"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                          ></path>
+                        </svg>
+                      </label>
+                      <input type="radio" id="star-2" name="star-radio" value="star-1" />
+                      <label for="star-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path
+                            pathLength="360"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                          ></path>
+                        </svg>
+                      </label>
+                      <input type="radio" id="star-3" name="star-radio" value="star-1" />
+                      <label for="star-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path
+                            pathLength="360"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                          ></path>
+                        </svg>
+                      </label>
+                      <input type="radio" id="star-4" name="star-radio" value="star-1" />
+                      <label for="star-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path
+                            pathLength="360"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                          ></path>
+                        </svg>
+                      </label>
+                      <input type="radio" id="star-5" name="star-radio" value="star-1" />
+                      <label for="star-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path
+                            pathLength="360"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                          ></path>
+                        </svg>
+                      </label>
+                    </div>
+                    <p class="text-rating" style="margin-top: 2px; margin-left: 2px">
+                      4.05
+                    </p>
+                  </v-col>
+                  <v-col class="text-right" cols="6">
+                    <v-btn
+                      width="88"
+                      height="32"
+                      class="text-capitalize text-btn-watch mr-2"
+                      color="primary"
+                      size="small"
+                      prepend-icon="mdi-heart-outline"
+                      variant="outlined"
+                    >
+                      Watch
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-card>
-      </v-col>
-      <v-col cols="12" sm="12" md="12" lg="4">
-        <v-card
-          class="pa-5 d-flex flex-column justify-center align-center rounded-1"
-          style="min-height: 156px; background-color: #ededf0"
-        >
-          <img width="80" height="80" @click="logValue" :src="footer2" />
-          <v-card-title class="text-center">Fine & Styled components</v-card-title>
-          <v-card-subtitle class="text-center"
-            >Speed up with Setproduct templates</v-card-subtitle
-          >
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="12" md="12" lg="4">
-        <v-card
-          class="pa-5 d-flex flex-column justify-center align-center rounded-1"
-          style="min-height: 156px; background-color: #ededf0"
-        >
-          <img width="80" height="80" :src="footer3" />
-          <v-card-title class="text-center">Customizable & Reusable</v-card-title>
-          <v-card-subtitle class="text-center"
-            >Take our UX patterns and rebuild</v-card-subtitle
-          >
-        </v-card>
-      </v-col>
-    </v-row>
-    <!-- </v-container> -->
+        <v-row class="ma-1">
+          <v-col cols="12" sm="12" md="12" lg="4">
+            <v-card
+              class="pa-5 d-flex flex-column justify-center align-center rounded-1"
+              style="min-height: 156px; background-color: #ededf0"
+            >
+              <img width="80" height="80" :src="footer1" />
+              <v-card-title class="text-center">Clear & Usable user flows</v-card-title>
+              <v-card-subtitle class="text-center"
+                >Let’s boost your marketplace</v-card-subtitle
+              >
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="12" md="12" lg="4">
+            <v-card
+              class="pa-5 d-flex flex-column justify-center align-center rounded-1"
+              style="min-height: 156px; background-color: #ededf0"
+            >
+              <img width="80" height="80" @click="logValue" :src="footer2" />
+              <v-card-title class="text-center">Fine & Styled components</v-card-title>
+              <v-card-subtitle class="text-center"
+                >Speed up with Setproduct templates</v-card-subtitle
+              >
+            </v-card>
+          </v-col>
+          <v-col cols="12" sm="12" md="12" lg="4">
+            <v-card
+              class="pa-5 d-flex flex-column justify-center align-center rounded-1"
+              style="min-height: 156px; background-color: #ededf0"
+            >
+              <img width="80" height="80" :src="footer3" />
+              <v-card-title class="text-center">Customizable & Reusable</v-card-title>
+              <v-card-subtitle class="text-center"
+                >Take our UX patterns and rebuild</v-card-subtitle
+              >
+            </v-card>
+          </v-col>
+        </v-row>
+        <!-- </v-container> -->
+      </div>
+    </div>
   </div>
 </template>
   
@@ -267,6 +259,10 @@ import { ref, reactive, computed, onMounted } from 'vue';
 import footer1 from '@/assets/footer1.png';
 import footer2 from '@/assets/footer2.png';
 import footer3 from '@/assets/footer3.png';
+import AppBarView from './AppBarView.vue';
+import TopNav from './TopNavView.vue';
+import Department from './DepartmentView.vue';
+
 import numeral from 'numeral';
 import { useProduct } from '@/layouts/components/product/product.store';
 
@@ -334,8 +330,8 @@ const filteredProducts = computed(() => {
 }
 
 .custom-shadow {
-  margin-top: 10px;
-  box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.2);
+  margin-top: 16px;
+  /* box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.2); */
 }
 .my-card {
   max-height: 200px; /* Đặt chiều cao tối đa của thẻ */
