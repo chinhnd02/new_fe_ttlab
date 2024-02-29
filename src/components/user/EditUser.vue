@@ -117,6 +117,24 @@
           style="color: #464f60"
           class="font-weight-bold font-weight-medium mt-4 text-medium-emphasis d-flex align-center text-name mb-2"
         >
+          Quyền của người dùng
+          <p class="ml-1" style="color: #0f60ff">*</p>
+        </div>
+        <v-text-field
+          density="compact"
+          variant="solo"
+          single-line
+          class="bg-white"
+          v-model="user.roles"
+          hide-details
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
+          flat
+        ></v-text-field>
+
+        <div
+          style="color: #464f60"
+          class="font-weight-bold font-weight-medium mt-4 text-medium-emphasis d-flex align-center text-name mb-2"
+        >
           Avatar
           <p class="ml-1" style="color: #0f60ff">*</p>
         </div>
@@ -194,6 +212,7 @@ const user = ref<User>({
   birthday: new Date(),
   phone: 0,
   avatar: null,
+  roles: '',
 });
 
 const imageField = ref(null);
@@ -211,6 +230,7 @@ const updateUser = async () => {
     formData.append('birthday', user.value.birthday);
     formData.append('phone', user.value.phone);
     formData.append('avatar', imageField.value);
+    formData.append('roles', user.value.roles);
 
     const newItem = await serviceUser.editUser(props.idUser, formData);
     console.log(formData);
@@ -236,6 +256,7 @@ watchEffect(() => {
   user.value.birthday = formattedBirthday.value;
   user.value.phone = props.currentUser.phone;
   user.value.avatar = props.currentUser.avatar;
+  user.value.roles = props.currentUser.roles;
 });
 </script>
 

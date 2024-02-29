@@ -5,4 +5,5 @@ export interface User {
     birthday?: Date;
     phone?: number;
     avatar?: File | null;
+    roles?: string;
 }

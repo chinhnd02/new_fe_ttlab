@@ -128,6 +128,26 @@
         <!-- <v-textarea label="Label" variant="solo" flat single-line></v-textarea> -->
 
         <div
+          class="text-medium-emphasis mt-4 d-flex align-center font-weight-bold text-name mb-2"
+        >
+          Quyền của người dùng
+          <!-- <p class="ml-1" style="color: #0f60ff">*</p> -->
+        </div>
+
+        <v-text-field
+          density="compact"
+          variant="solo"
+          label="Nhập quyền"
+          single-line
+          v-model="roleField.value.value"
+          class="bg-white mb-3"
+          hide-details
+          flat
+          style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
+        ></v-text-field>
+        <!-- <span class="error-message">{{ phoneField.errorMessage }}</span> -->
+
+        <div
           class="text-medium-emphasis text-[14px] d-flex align-center font-weight-bold text-name mb-2"
         >
           Avartar
@@ -241,6 +261,8 @@ const birthdayField = useField('birthday');
 const phoneField = useField('phone', '');
 const passwordField = useField('password', '');
 
+const roleField = useField('role');
+
 const resetForm = () => {
   nameField.value = '';
   emailField.value = '';
@@ -264,6 +286,7 @@ const addUser = handleSubmit(async () => {
     formData.append('birthday', birthdayField.value.value);
     formData.append('phone', phoneField.value.value);
     formData.append('avatar', imageField.value);
+    formData.append('roles', roleField.value.value);
 
     const response = await serviceUser.addUser(formData);
     console.log(response);
@@ -275,6 +298,7 @@ const addUser = handleSubmit(async () => {
     passwordField.value.value = '';
     phoneField.value.value = '';
     imageField.value = null;
+    roleField.value.value = '';
 
     emits('close');
     emits('updateData');
