@@ -130,6 +130,7 @@
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
         ></v-text-field>
+        <!-- {{ user.roles }} -->
 
         <div
           style="color: #464f60"

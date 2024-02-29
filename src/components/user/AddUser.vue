@@ -131,7 +131,6 @@
           class="text-medium-emphasis mt-4 d-flex align-center font-weight-bold text-name mb-2"
         >
           Quyền của người dùng
-          <!-- <p class="ml-1" style="color: #0f60ff">*</p> -->
         </div>
 
         <v-text-field
