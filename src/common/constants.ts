@@ -119,6 +119,7 @@ export enum Role {
   USER = 'USER',
   MANAGER = 'MANAGER',
   MASTER = 'MASTER',
+  ADMIN = 'admin'
 }
 
 export enum RoleType {

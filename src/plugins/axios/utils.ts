@@ -24,11 +24,11 @@ export const sendRefreshToken = async () => {
       // localStorageAuthService.setAccessToken(response.data?.data.accessToken);
       // localStorageAuthService.setAccessTokenExpiredAt(response.data?.data.expiresIn);
 
-      localStorageAuthService.setAccessToken(response.data?.accessToken.token);
-      localStorageAuthService.setAccessTokenExpiredAt(response.data?.accessToken.expriesIn);
+      localStorageAuthService.setAccessToken(response.accessToken.token);
+      localStorageAuthService.setAccessTokenExpiredAt(response.accessToken.expriesIn);
 
-      localStorageAuthService.setRefreshToken(response.data?.refreshToken.token);
-      localStorageAuthService.setRefresh_TokenExpiredAt(response.data?.refreshToken.expiresIn)
+      localStorageAuthService.setRefreshToken(response.refreshToken.token);
+      localStorageAuthService.setRefresh_TokenExpiredAt(response.refreshToken.expiresIn)
       return;
     }
     logout(true);

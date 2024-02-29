@@ -21,13 +21,15 @@
       </div>
     </div>
     <!--  -->
+    <!-- append-inner-icon="mdi mdi-close" -->
     <v-text-field
       density="compact"
       variant="solo-filled"
       label="Tìm kiếm"
-      style="max-width: 668px; background-color: #ededf0; border-radius: 100%"
+      style="max-width: 668px; border-radius: 30px !important"
+      rounded
       prepend-inner-icon="mdi-magnify"
-      append-inner-icon="mdi mdi-close"
+      clearable
       single-line
       flat
       hide-details
@@ -78,7 +80,12 @@
       </v-badge>
     </div>
     <div class="d-flex align-center justify-center ml-4">
-      <v-img :src="avt" width="40" height="40"></v-img>
+      <v-img
+        :src="AvatarUser"
+        width="40"
+        height="40"
+        style="border-radius: 100px"
+      ></v-img>
     </div>
   </div>
   <!--  -->
@@ -87,6 +94,8 @@
 <script setup lang="ts">
 import logo from '@/assets/images/Logo.png';
 import avt from '@/assets/images/Photo.png';
+
+const AvatarUser = localStorage.getItem('AVATAR');
 </script>
 
 <style scoped>

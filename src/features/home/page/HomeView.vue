@@ -120,6 +120,7 @@
                   width="227px"
                   height="224px"
                   :src="item.image"
+                  style="border-radius: 4px"
                   alt="Product Image"
                 ></v-img>
                 <v-card-text
@@ -292,7 +293,8 @@ const logValue = () => {
 };
 
 const formatMoney = (money) => {
-  return numeral(money).format('0,0') + ' ₫';
+  return '$' + numeral(money).format('0,0');
+  // return numeral(money).format('0,0') + ' ₫';
 };
 const SelectedCategory = ref('All');
 const selectedSort = ref(null);

@@ -198,6 +198,7 @@ const deleteUser = async () => {
         </v-table>
       </v-col>
     </v-row>
+    <v-divider class="pa-1 w-100"></v-divider>
 
     <div style="background-color: white; border-radius: 0 0 12px 12px" class="mr-5 mb-10">
       <v-row>

@@ -16,7 +16,7 @@
       >
         Sửa người dùng
       </div>
-      <div style="background-color: #f7f7f7; padding: 16px 20px">
+      <div style="background-color: #f7f7f7; padding: 16px 20px 30px 20px">
         <div
           style="color: #464f60"
           class="font-weight-bold font-weight-medium text-medium-emphasis d-flex align-center text-name mb-2"
@@ -36,7 +36,7 @@
           flat
         ></v-text-field>
 
-        <div
+        <!-- <div
           style="color: #464f60"
           class="font-weight-bold font-weight-medium mt-4 text-medium-emphasis d-flex align-center text-name mb-2"
         >
@@ -53,7 +53,7 @@
           hide-details
           style="border-radius: 6px; border: 1px solid rgb(231, 231, 231)"
           flat
-        ></v-text-field>
+        ></v-text-field> -->
 
         <div
           style="color: #464f60"
@@ -134,6 +134,7 @@
         ></v-text-field>
       </div>
       <v-row
+        class=""
         style="
           padding-top: 8px;
           background-color: white;
@@ -174,6 +175,7 @@ import { ref, watchEffect } from 'vue';
 import { User } from '../../layouts/components/user/interface';
 import { serviceUser } from '../../layouts/components/user/user';
 import moment from 'moment';
+import { showSuccessNotification } from '@/common/helpers';
 
 const props = defineProps<{
   dialogEdit: boolean;
@@ -214,6 +216,7 @@ const updateUser = async () => {
     console.log(formData);
 
     if (newItem.success) {
+      showSuccessNotification('Update thành công');
       emits('updateData');
       emits('close');
     }

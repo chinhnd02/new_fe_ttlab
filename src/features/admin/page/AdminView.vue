@@ -1,110 +1,115 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      class="sidebar"
-      v-model:rail="rail"
-      :rail-width="60"
-      :permanent="true"
-      :width="width"
-      @click="toggleCollapse"
-      style="border: none"
-    >
-      <!--  -->
-      <v-list-item title="" subtitle="" class="align-center justify-center">
-        <v-img
-          :src="logo_ngang"
-          :lazy-src="logo_ngang"
-          :width="140"
-          style="padding: 20px 0 20px 0"
-        ></v-img>
-        <!-- <v-icon icon="mdi-chevron-left"></v-icon> -->
-      </v-list-item>
-      <v-list-item
-        class="text-uppercase text-manager"
-        @click="rail = true"
-        link
-        title=""
-        disabled
-        :class="rail == true ? 'none' : ''"
-        >quản lý sản phẩm</v-list-item
+    <div v-if="ROLE == 'admin'">
+      <v-navigation-drawer
+        class="sidebar"
+        v-model:rail="rail"
+        :rail-width="60"
+        :permanent="true"
+        :width="width"
+        @click="toggleCollapse"
+        style="border: none"
       >
-      <v-list-item
-        link
-        prepend-icon="mdi mdi-package-variant-closed"
-        title="Sản phẩm"
-        @click="showProduct"
-        :class="option == 1 ? 'option' : 'non-option'"
-        style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi mdi-account-group"
-        @click="showUser"
-        link
-        title="User"
-        class="text-option"
-        :class="option == 2 ? 'option' : 'non-option'"
-        style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
-      ></v-list-item>
-    </v-navigation-drawer>
+        <!--  -->
+        <v-list-item title="" subtitle="" class="align-center justify-center">
+          <v-img
+            :src="logo_ngang"
+            :lazy-src="logo_ngang"
+            :width="140"
+            style="padding: 20px 0 20px 0"
+          ></v-img>
+          <!-- <v-icon icon="mdi-chevron-left"></v-icon> -->
+        </v-list-item>
+        <v-list-item
+          class="text-uppercase text-manager"
+          @click="rail = true"
+          link
+          title=""
+          disabled
+          :class="rail == true ? 'none' : ''"
+          >quản lý sản phẩm</v-list-item
+        >
+        <v-list-item
+          link
+          prepend-icon="mdi mdi-package-variant-closed"
+          title="Sản phẩm"
+          @click="showProduct"
+          :class="option == 1 ? 'option' : 'non-option'"
+          style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
+        ></v-list-item>
+        <v-list-item
+          prepend-icon="mdi mdi-account-group"
+          @click="showUser"
+          link
+          title="User"
+          class="text-option"
+          :class="option == 2 ? 'option' : 'non-option'"
+          style="max-width: 232px; height: 40px; margin-left: 14px; border-radius: 6px"
+        ></v-list-item>
+      </v-navigation-drawer>
 
-    <v-app-bar flat style="background-color: #f5f5f9">
-      <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+      <v-app-bar flat style="background-color: #f5f5f9">
+        <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
 
-      <v-app-bar-title class="title-admin ml-5">{{
-        showProductList == true ? 'Danh sách sản phẩm' : 'Danh sách người dùng'
-      }}</v-app-bar-title>
-      <v-badge content="4" class="mr-2" overlap color="red">
-        <v-icon icon="mdi mdi-bell-outline"></v-icon>
-      </v-badge>
-      <!-- <v-badge class="ml-4 mr-8" offset-x="50%" offset-y="50%" overlap color="green" dot>
+        <v-app-bar-title class="title-admin ml-5">{{
+          showProductList == true ? 'Danh sách sản phẩm' : 'Danh sách người dùng'
+        }}</v-app-bar-title>
+        <v-badge content="4" class="mr-2" overlap color="red">
+          <v-icon icon="mdi mdi-bell-outline"></v-icon>
+        </v-badge>
+        <!-- <v-badge class="ml-4 mr-8" offset-x="50%" offset-y="50%" overlap color="green" dot>
         <v-avatar @click="dialogProfile = true">
           <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
         </v-avatar>
       </v-badge> -->
 
-      <v-menu open-on-hover>
-        <template v-slot:activator="{ props }">
-          <v-badge
-            v-bind="props"
-            class="ml-4 mr-8"
-            offset-x="50%"
-            offset-y="50%"
-            overlap
-            color="green"
-            dot
-          >
-            <v-avatar @click="dialogProfile = true">
-              <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
-            </v-avatar>
-          </v-badge>
-          <!-- <v-btn color="primary" v-bind="props"> Dropdown </v-btn> -->
-        </template>
+        <v-menu open-on-hover>
+          <template v-slot:activator="{ props }">
+            <v-badge
+              v-bind="props"
+              class="ml-4 mr-8"
+              offset-x="50%"
+              offset-y="50%"
+              overlap
+              color="green"
+              dot
+            >
+              <v-avatar @click="dialogProfile = true">
+                <v-img :src="AvatarUser" alt="John"></v-img>
+              </v-avatar>
+            </v-badge>
+            <!-- <v-btn color="primary" v-bind="props"> Dropdown </v-btn> -->
+          </template>
 
-        <v-list>
-          <!-- <v-list-item v-for="(item, index) in items" :key="index">
+          <v-list>
+            <!-- <v-list-item v-for="(item, index) in items" :key="index">
             <v-list-item-title style="cursor: pointer">{{
               item.title
             }}</v-list-item-title>
           </v-list-item> -->
-          <v-list-item style="padding: 0">
-            <v-list-item-title class="item-title d-flex align-center justify-center"
-              >Xem profile</v-list-item-title
-            >
-            <v-list-item-title
-              class="item-title d-flex align-center justify-center"
-              @click="logout"
-              >Đăng xuất</v-list-item-title
-            >
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
+            <v-list-item style="padding: 0">
+              <v-list-item-title class="item-title d-flex align-center justify-center"
+                >Xem profile</v-list-item-title
+              >
+              <v-list-item-title
+                class="item-title d-flex align-center justify-center"
+                @click="logout"
+                >Đăng xuất</v-list-item-title
+              >
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-app-bar>
 
-    <v-main style="background-color: #f5f5f9">
-      <!--  -->
-      <main-layout v-if="showProductList" />
-      <secondary-layout v-else />
-    </v-main>
+      <v-main style="background-color: #f5f5f9">
+        <!--  -->
+        <main-layout v-if="showProductList" />
+        <secondary-layout v-else />
+      </v-main>
+    </div>
+    <div v-else>
+      <Page403 />
+    </div>
   </v-app>
 </template>
   
@@ -116,6 +121,7 @@ import SecondaryLayout from '@/layouts/SecondaryLayout.vue';
 // import MainLayout from '@/layouts/SecondaryLayout.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 import router from '@/plugins/vue-router';
+import Page403 from './Page403.vue';
 
 const drawer = ref(null);
 
@@ -127,6 +133,9 @@ const option = ref(1);
 const Profile = ref(false);
 
 const items = ref([{ title: 'Xem profile' }, { title: 'Đăng xuất' }]);
+
+const ROLE = localStorage.getItem('ROLE');
+const AvatarUser = localStorage.getItem('AVATAR');
 
 const showProduct = () => {
   showProductList.value = true;

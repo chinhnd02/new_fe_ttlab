@@ -14,8 +14,27 @@ export const enum AUTH_SERVICE_KEY {
   LANGUAGE = 'LANGUAGE',
   ACCESS_TOKEN_EXPIRED_AT = 'ACCESS_TOKEN_EXPIRED_AT',
   REFRESH_TOKEN_EXPIRED_AT = 'REFRESH_TOKEN_EXPIRED_AT',
+  AVATAR = 'AVATAR'
 }
 class LocalStorageAuthService {
+  //ROLE
+  setUserRole(role: string): void {
+    return storage.setLocalStorage(AUTH_SERVICE_KEY.ROLE, role)
+  }
+
+  //
+  setUserAvatar(avatar: string): void {
+    return storage.setLocalStorage(AUTH_SERVICE_KEY.AVATAR, avatar)
+  }
+  getUserAvatar(): string {
+    return storage.getLocalStorage(AUTH_SERVICE_KEY.AVATAR)
+  }
+
+
+
+  // getUserRole():string {
+  //   return storage.getLocalStorage(AUTH_SERVICE_KEY.ROLE)
+  // }
   // ACCESS_TOKEN
   setAccessToken(token: string): void {
     storage.setLocalStorage(AUTH_SERVICE_KEY.ACCESS_TOKEN, token);
@@ -72,8 +91,12 @@ class LocalStorageAuthService {
     return storage.getObjectFromKey(AUTH_SERVICE_KEY.USER) as IUserProfile;
   }
 
+  // getLoginUser(): IUserProfile {
+  //   return storage.getObjectFromKey(AUTH_SERVICE_KEY.USER) as IUserProfile;
+  // }
+
   getUserRole() {
-    return storage.getObjectFromKey(AUTH_SERVICE_KEY.ROLE) as IUserRole;
+    return storage.getObjectFromKey(AUTH_SERVICE_KEY.ROLE);
   }
 
   getHeader() {
