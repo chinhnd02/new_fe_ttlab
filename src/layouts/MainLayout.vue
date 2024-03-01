@@ -9,6 +9,7 @@ import numeral from 'numeral';
 import { DEFAULT_LIMIT_FOR_PAGINATION } from '@/common/constants';
 import { useProduct } from '../layouts/components/product/product.store';
 import { showSuccessNotification } from '@/common/helpers';
+import { number } from 'yup';
 
 const { fetchProducts, query } = useProduct();
 
@@ -21,6 +22,8 @@ const dialogDelete = ref(false);
 
 const currentProduct = ref('');
 const idProduct = ref('');
+
+const totalItems = ref('');
 
 const products = ref([]);
 const id = ref(null);
@@ -41,6 +44,7 @@ const getAllProduct = async () => {
   const res = await fetchProducts();
   products.value = res.data;
   lengthPage.value = Math.ceil(res.totalItems / selectedValue.value);
+  totalItems.value = res?.totalItems;
 };
 
 // const getAllProduct = async () => {
@@ -258,7 +262,7 @@ const formatMoney = (money) => {
                   label="10"
                   variant="outlined"
                 ></v-select>
-                <p class="mt-5 showing">of 50</p>
+                <p class="mt-5 showing">of {{ totalItems }}</p>
               </v-row>
             </v-col>
           </v-row>

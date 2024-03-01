@@ -56,6 +56,7 @@
           density="compact"
           variant="solo"
           label="Nhập giá sản phẩm"
+          type="number"
           single-line
           v-model="priceField.value.value"
           class="bg-white"
@@ -79,6 +80,7 @@
           density="compact"
           variant="solo"
           label="Nhập số lượng sản phẩm"
+          type="number"
           single-line
           class="bg-white"
           v-model="quantityField.value.value"
@@ -243,17 +245,21 @@ const addProduct = handleSubmit(async () => {
 
     console.log(response);
 
-    nameField.value.value = '';
-    priceField.value.value = '';
-    quantityField.value.value = '';
-    descriptionField.value.value = '';
-    imageFile.value = null;
-    // emptyForm();
+    if (response.success) {
+      nameField.value.value = '';
+      priceField.value.value = '';
+      quantityField.value.value = '';
+      descriptionField.value.value = '';
+      imageFile.value = null;
+      // emptyForm();
 
-    emits('close');
-    emits('updateData');
+      emits('close');
+      emits('updateData');
 
-    showSuccessNotification('Thêm sản phẩm thành công');
+      showSuccessNotification('Thêm sản phẩm thành công');
+    } else {
+      showErrorNotification('Thêm sản phẩm thất bại');
+    }
   } catch (error) {
     showErrorNotification('Thêm sản phẩm thất bại');
     console.error('Error', error);

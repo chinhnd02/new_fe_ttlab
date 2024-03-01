@@ -113,7 +113,7 @@ export enum Gender {
   OTHER = 'OTHER',
 }
 
-export const DEFAULT_LIMIT_FOR_PAGINATION = 12;
+export const DEFAULT_LIMIT_FOR_PAGINATION = 10;
 export const DEFAULT_FIRST_PAGE = 1;
 
 export enum Role {

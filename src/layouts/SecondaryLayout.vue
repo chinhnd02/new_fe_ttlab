@@ -17,6 +17,8 @@ const dialogDelete = ref(false);
 const currentUser = ref('');
 const idUser = ref('');
 
+const totalItems = ref('');
+
 const user = ref([]);
 const id = ref(null);
 const search = ref('');
@@ -36,6 +38,7 @@ const getAllUser = async () => {
   const res = await fetchUser();
   user.value = res.data;
   lengthPage.value = Math.ceil(res.totalItems / selectedValue.value);
+  totalItems.value = res?.totalItems;
 };
 
 watch(selectedValue, (newVal) => {
@@ -217,7 +220,7 @@ const deleteUser = async () => {
                   label="10"
                   variant="outlined"
                 ></v-select>
-                <p class="mt-5 showing">of 50</p>
+                <p class="mt-5 showing">of {{ totalItems }}</p>
               </v-row>
             </v-col>
           </v-row>
