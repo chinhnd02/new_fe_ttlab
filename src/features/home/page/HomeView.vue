@@ -1,7 +1,9 @@
 <template>
   <div>
-    <AppBarView />
+    <AppBarView :search="search" />
     <TopNav />
+
+    {{ search }}
 
     <div style="max-width: 1492px; margin: auto">
       <Department style="max-width: 355px; float: left" />
@@ -268,6 +270,13 @@ import numeral from 'numeral';
 import { useProduct } from '@/layouts/components/product/product.store';
 
 const { fetchProducts, query } = useProduct();
+
+const search = ref('');
+
+const searchProduct = computed(() => {
+  const keyword = search.value.toLowerCase();
+  return products.value.filter((p) => p.name.toLowerCase().includes(keyword));
+});
 
 let s = ref(2);
 let ss = ref(2);

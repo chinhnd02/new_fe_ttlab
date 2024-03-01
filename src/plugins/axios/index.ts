@@ -17,6 +17,7 @@ const options: AxiosRequestConfig = {
     'X-Timezone-Name': dayjs.tz.guess(),
   } as unknown as AxiosRequestHeaders,
   baseURL: import.meta.env.VUE_APP_API_URL,
+  // baseURL: process.env.VUE_APP_API_URL,
   responseType: 'json',
   withCredentials: false,
 };
@@ -26,8 +27,10 @@ const throttled = throttle(sendRefreshToken, 10000, { trailing: false });
 
 axiosInstance.interceptors.request.use(async (config: any) => {
   const tokenExpiredAt = localStorageAuthService.getAccessTokenExpiredAt();
+  // const tokenExpiredAt = localStorage.getItem('ACCESS_TOKEN_EXPIRED_AT');
   if (tokenExpiredAt && dayjs(tokenExpiredAt).isBefore()) {
     // check refresh token ok, call refresh token api
+    // alert('refresh-token')
     await throttled();
   }
   Object.assign(config, {

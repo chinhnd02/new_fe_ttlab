@@ -29,6 +29,7 @@
       style="max-width: 668px; border-radius: 30px !important"
       rounded
       prepend-inner-icon="mdi-magnify"
+      v-model="props.search"
       clearable
       single-line
       flat
@@ -94,8 +95,20 @@
 <script setup lang="ts">
 import logo from '@/assets/images/Logo.png';
 import avt from '@/assets/images/Photo.png';
+// import { ref } from 'vue';
 
 const AvatarUser = localStorage.getItem('AVATAR');
+
+const props = defineProps<{
+  search: string;
+}>();
+
+// const searchProduct = computed(() => {
+//   const keyword = search.value.toLowerCase();
+//   return products.value.filter((p) => p.name.toLowerCase().includes(keyword));
+// });
+
+// const search = ref('');
 </script>
 
 <style scoped>
