@@ -29,6 +29,11 @@ export const sendRefreshToken = async () => {
         'Content-Type': 'application/json'
       }
     });
+    // alert('lay xog refresh token')
+
+
+    console.log(response);
+
 
     if (response?.status === HttpStatus.CREATA_AT) {
 

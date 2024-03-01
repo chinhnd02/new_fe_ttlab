@@ -83,7 +83,9 @@
     </div>
     <!--  -->
     <div class="new-arrivals">
-      <p class="text-new-arrivals d-flex align-center justify-center">New Arrivals</p>
+      <p class="text-new-arrivals d-flex align-center justify-center text-uppercase">
+        New Arrivals
+      </p>
       <div class="some-products d-flex align-center justify-center">
         <!--  -->
         <div class="product mr-5">
@@ -229,6 +231,157 @@
         ><p class="text-btn-view-all text-capitalize">View All</p></v-btn
       >
       <v-divider class="mb-16" style="width: 1240px; margin-left: 100px"></v-divider>
+    </div>
+    <!--  -->
+    <div class="new-arrivals">
+      <p class="text-new-arrivals d-flex align-center justify-center text-uppercase">
+        Top Selling
+      </p>
+      <div class="some-products d-flex align-center justify-center">
+        <!--  -->
+        <div class="product mr-5">
+          <v-img
+            :src="product1"
+            width="295"
+            height="298"
+            style="border-radius: 20px"
+          ></v-img>
+          <p class="name-product mt-4">T-SHIRT WITH TAPE DETAILS</p>
+          <div
+            class="rating d-flex align-center justify-center mt-2"
+            style="width: 120px; height: 19px"
+          >
+            <input value="1" name="rate" id="star1" type="radio" />
+            <label title="text" for="star1"></label>
+            <input value="2" name="rate" id="star2" type="radio" />
+            <label title="text" for="star2"></label>
+            <input value="3" name="rate" id="star3" type="radio" checked="" />
+            <label title="text" for="star3"></label>
+            <input value="4" name="rate" id="star4" type="radio" />
+            <label title="text" for="star4"></label>
+            <input value="5" name="rate" id="star5" type="radio" />
+            <label title="text" for="star5"></label>
+            <div class="rating-point mt-1">4/5</div>
+          </div>
+
+          <div class="price mt-2">$120</div>
+        </div>
+        <!--  -->
+        <div class="product mr-5">
+          <v-img
+            :src="product1"
+            width="295"
+            height="298"
+            style="border-radius: 20px"
+          ></v-img>
+          <p class="name-product mt-4">T-SHIRT WITH TAPE DETAILS</p>
+          <div
+            class="rating d-flex align-center justify-center mt-2"
+            style="width: 120px; height: 19px"
+          >
+            <input value="1" name="rate" id="star1" type="radio" />
+            <label title="text" for="star1"></label>
+            <input value="2" name="rate" id="star2" type="radio" />
+            <label title="text" for="star2"></label>
+            <input value="3" name="rate" id="star3" type="radio" checked="" />
+            <label title="text" for="star3"></label>
+            <input value="4" name="rate" id="star4" type="radio" />
+            <label title="text" for="star4"></label>
+            <input value="5" name="rate" id="star5" type="radio" />
+            <label title="text" for="star5"></label>
+            <div class="rating-point mt-1">4/5</div>
+          </div>
+
+          <div class="d-flex align-center justify-left">
+            <div class="price mt-2" style="margin-right: 10px">$120</div>
+            <div
+              class="old-price mt-2 text-decoration-line-through"
+              style="margin-right: 10px"
+            >
+              $150
+            </div>
+            <div class="sales mt-2 d-flex align-center justify-center">-20%</div>
+          </div>
+        </div>
+        <!--  -->
+
+        <!--  -->
+        <div class="product mr-5">
+          <v-img
+            :src="product1"
+            width="295"
+            height="298"
+            style="border-radius: 20px"
+          ></v-img>
+          <p class="name-product mt-4">T-SHIRT WITH TAPE DETAILS</p>
+          <div
+            class="rating d-flex align-center justify-center mt-2"
+            style="width: 120px; height: 19px"
+          >
+            <input value="1" name="rate" id="star1" type="radio" />
+            <label title="text" for="star1"></label>
+            <input value="2" name="rate" id="star2" type="radio" />
+            <label title="text" for="star2"></label>
+            <input value="3" name="rate" id="star3" type="radio" checked="" />
+            <label title="text" for="star3"></label>
+            <input value="4" name="rate" id="star4" type="radio" />
+            <label title="text" for="star4"></label>
+            <input value="5" name="rate" id="star5" type="radio" />
+            <label title="text" for="star5"></label>
+            <div class="rating-point mt-1">4/5</div>
+          </div>
+
+          <div class="price mt-2">$120</div>
+        </div>
+        <!--  -->
+        <div class="product">
+          <v-img
+            :src="product1"
+            width="295"
+            height="298"
+            style="border-radius: 20px"
+          ></v-img>
+          <p class="name-product mt-4">T-SHIRT WITH TAPE DETAILS</p>
+          <div
+            class="rating d-flex align-center justify-center mt-2"
+            style="width: 120px; height: 19px"
+          >
+            <input value="1" name="rate" id="star1" type="radio" />
+            <label title="text" for="star1"></label>
+            <input value="2" name="rate" id="star2" type="radio" />
+            <label title="text" for="star2"></label>
+            <input value="3" name="rate" id="star3" type="radio" checked="" />
+            <label title="text" for="star3"></label>
+            <input value="4" name="rate" id="star4" type="radio" />
+            <label title="text" for="star4"></label>
+            <input value="5" name="rate" id="star5" type="radio" />
+            <label title="text" for="star5"></label>
+            <div class="rating-point mt-1">4/5</div>
+          </div>
+
+          <div class="d-flex align-center justify-left">
+            <div class="price mt-2" style="margin-right: 10px">$120</div>
+            <div
+              class="old-price mt-2 text-decoration-line-through"
+              style="margin-right: 10px"
+            >
+              $150
+            </div>
+            <div class="sales mt-2 d-flex align-center justify-center">-20%</div>
+          </div>
+        </div>
+        <!--  -->
+      </div>
+      <v-btn
+        class="mt-9 mb-16"
+        variant="outlined"
+        width="218"
+        height="52"
+        color="#0000001A"
+        style="border-radius: 62px; left: 611px"
+        ><p class="text-btn-view-all text-capitalize">View All</p></v-btn
+      >
+      <!-- <v-divider class="mb-16" style="width: 1240px; margin-left: 100px"></v-divider> -->
     </div>
   </div>
 </template>

@@ -210,7 +210,7 @@ import { useField, useForm } from 'vee-validate';
 import { ref } from 'vue';
 import * as yup from 'yup';
 import { serviceUser } from '../../layouts/components/user/user';
-import { showSuccessNotification } from '@/common/helpers';
+import { showErrorNotification, showSuccessNotification } from '@/common/helpers';
 
 const props = defineProps<{
   dialogAdd: boolean;
@@ -288,20 +288,24 @@ const addUser = handleSubmit(async () => {
     formData.append('roles', roleField.value.value);
 
     const response = await serviceUser.addUser(formData);
-    console.log(response);
+    if (response.success) {
+      console.log(response);
 
-    nameField.value.value = '';
-    passwordField.value.value = '';
-    emailField.value.value = '';
-    birthdayField.value.value = '';
-    passwordField.value.value = '';
-    phoneField.value.value = '';
-    imageField.value = null;
-    roleField.value.value = '';
+      nameField.value.value = '';
+      passwordField.value.value = '';
+      emailField.value.value = '';
+      birthdayField.value.value = '';
+      passwordField.value.value = '';
+      phoneField.value.value = '';
+      imageField.value = null;
+      roleField.value.value = '';
 
-    emits('close');
-    emits('updateData');
-    showSuccessNotification('Thêm người dùng thành công');
+      emits('close');
+      emits('updateData');
+      showSuccessNotification('Thêm người dùng thành công');
+    } else {
+      showErrorNotification('Thêm người dùng thất bại');
+    }
   } catch (error) {
     console.log('Error: ', error);
   }
