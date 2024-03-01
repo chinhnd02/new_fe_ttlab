@@ -40,6 +40,7 @@ export const sendRefreshToken = async () => {
       localStorageAuthService.setAccessTokenExpiredAt(response.data?.expiresIn);
       localStorageAuthService.setRefreshToken(response.data?.newRefreshToken);
       localStorageAuthService.setRefreshTokenExpiredAt(response.data?.refreshExpiresIn)
+      localStorageAuthService.setUserRole(response.data?.roles)
       return;
     }
     logout(true);
